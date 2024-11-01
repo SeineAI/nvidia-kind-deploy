@@ -54,9 +54,28 @@ install-operators:
 		--set driver.enabled=false \
 		--set toolkit.enabled=true \
 		--set devicePlugin.enabled=true \
-		--set containerRuntime.runtimeClass=nvidia \
+		--set migManager.enabled=false \
+		--set toolkit.version=v1.14.6 \
+		--set operator.defaultRuntime=containerd \
+		--set driver.rdma.enabled=false \
+		--set mig.strategy=mixed \
+		--set toolkit.env[0].name=CONTAINERD_CONFIG \
+		--set toolkit.env[0].value=/etc/containerd/config.toml \
+		--set toolkit.env[1].name=CONTAINERD_SOCKET \
+		--set toolkit.env[1].value=/run/containerd/containerd.sock \
+		--set toolkit.env[2].name=CONTAINERD_RUNTIME_CLASS \
+		--set toolkit.env[2].value=nvidia \
 		--namespace gpu-operator \
 		--create-namespace
+
+.PHONY: validate-gpu-operator
+validate-gpu-operator:
+	@echo "Waiting for GPU operator pods to be ready..."
+	kubectl wait --for=condition=ready pods -l app=nvidia-device-plugin-daemonset -n gpu-operator --timeout=300s
+	kubectl wait --for=condition=ready pods -l app=nvidia-container-toolkit-daemonset -n gpu-operator --timeout=300s
+	kubectl wait --for=condition=ready pods -l app=nvidia-dcgm-exporter -n gpu-operator --timeout=300s
+	@echo "Checking GPU operator logs..."
+	kubectl logs -l app=gpu-operator -n gpu-operator
 
 .PHONY: setup-monitoring
 setup-monitoring:
