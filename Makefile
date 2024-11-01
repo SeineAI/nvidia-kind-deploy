@@ -73,9 +73,23 @@ setup-monitoring:
 .PHONY: port-forward
 port-forward:
 	@echo "Setting up port forwards for monitoring services..."
+	# Wait for pods to be ready
+	kubectl wait --namespace monitoring --for=condition=Ready pods -l app=grafana --timeout=300s
+	kubectl wait --namespace monitoring --for=condition=Ready pods -l app=prometheus --timeout=300s
+	kubectl wait --namespace monitoring --for=condition=Ready pods -l app=alertmanager --timeout=300s
+	
+	# Start port forwarding
 	kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090:9090 --address 0.0.0.0 &
 	kubectl --namespace monitoring port-forward svc/grafana 3000:3000 --address 0.0.0.0 &
 	kubectl --namespace monitoring port-forward svc/alertmanager-main 9093:9093 --address 0.0.0.0 &
+	
+	# Verify port forwards are running
+	@echo "Verifying port forwards..."
+	@sleep 5
+	@netstat -tlpn | grep 9090 || (echo "Prometheus port forward failed" && exit 1)
+	@netstat -tlpn | grep 3000 || (echo "Grafana port forward failed" && exit 1)
+	@netstat -tlpn | grep 9093 || (echo "Alertmanager port forward failed" && exit 1)
+	@echo "Port forwards successfully established"
 
 .PHONY: clean
 clean:
