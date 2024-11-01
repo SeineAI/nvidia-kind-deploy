@@ -39,9 +39,26 @@ setup-nvidia-runtime:
 	docker exec kind-control-plane apt-get update
 	# Install NVIDIA container runtime
 	docker exec kind-control-plane apt-get install -y nvidia-container-runtime
+	# Copy NVIDIA utilities and libraries
+	chmod +x setup-nvidia-kind.sh
+	./setup-nvidia-kind.sh
+	# Configure containerd
 	docker cp containerd-config.toml kind-control-plane:/etc/containerd/config.toml
 	docker exec kind-control-plane systemctl restart containerd
 	sleep 10
+
+.PHONY: validate-nvidia-setup
+validate-nvidia-setup:
+	@echo "Validating NVIDIA setup in Kind container..."
+	@echo "\nChecking NVIDIA devices:"
+	@docker exec kind-control-plane ls -l /dev/nvidia*
+	@echo "\nChecking NVIDIA driver utilities:"
+	@docker exec kind-control-plane which nvidia-smi
+	@docker exec kind-control-plane nvidia-smi
+	@echo "\nChecking NVIDIA libraries:"
+	@docker exec kind-control-plane ls -l /usr/lib/x86_64-linux-gnu/libnvidia*
+	@echo "\nChecking container runtime:"
+	@docker exec kind-control-plane nvidia-container-cli info
 
 .PHONY: install-operators
 install-operators:
