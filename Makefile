@@ -32,6 +32,12 @@ cluster:
 setup-nvidia-runtime:
 	@echo "Setting up NVIDIA runtime in Kind node..."
 	docker exec kind-control-plane apt-get update
+	# Add NVIDIA repository and its GPG key
+	docker exec kind-control-plane apt-get install -y curl gnupg
+	docker exec kind-control-plane curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | docker exec -i kind-control-plane apt-key add -
+	docker exec kind-control-plane curl -s -L https://nvidia.github.io/nvidia-container-runtime/ubuntu20.04/nvidia-container-runtime.list | docker exec -i kind-control-plane tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+	docker exec kind-control-plane apt-get update
+	# Install NVIDIA container runtime
 	docker exec kind-control-plane apt-get install -y nvidia-container-runtime
 	docker cp containerd-config.toml kind-control-plane:/etc/containerd/config.toml
 	docker exec kind-control-plane systemctl restart containerd
