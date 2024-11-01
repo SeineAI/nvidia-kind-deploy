@@ -74,9 +74,9 @@ setup-monitoring:
 port-forward:
 	@echo "Setting up port forwards for monitoring services..."
 	# Wait for pods to be ready
-	kubectl wait --namespace monitoring --for=condition=Ready pods -l app=grafana --timeout=300s
-	kubectl wait --namespace monitoring --for=condition=Ready pods -l app=prometheus --timeout=300s
-	kubectl wait --namespace monitoring --for=condition=Ready pods -l app=alertmanager --timeout=300s
+	kubectl wait --namespace monitoring --for=condition=Ready pods -l app.kubernetes.io/name=grafana --timeout=300s
+	kubectl wait --namespace monitoring --for=condition=Ready pods -l app.kubernetes.io/name=prometheus --timeout=300s
+	kubectl wait --namespace monitoring --for=condition=Ready pods -l app.kubernetes.io/name=alertmanager --timeout=300s
 	
 	# Start port forwarding
 	kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090:9090 --address 0.0.0.0 &
