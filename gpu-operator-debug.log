@@ -1,327 +1,327 @@
 Collecting logs...
-Error from server (BadRequest): container "cuda-validation" in pod "nvidia-operator-validator-7zqkr" is waiting to start: PodInitializing
-Error from server (BadRequest): container "gpu-feature-discovery-imex-init" in pod "gpu-feature-discovery-b2dq8" is waiting to start: PodInitializing
-Error from server (BadRequest): container "nvidia-device-plugin" in pod "nvidia-device-plugin-daemonset-fw8gr" is waiting to start: PodInitializing
-Error from server (BadRequest): container "nvidia-dcgm-exporter" in pod "nvidia-dcgm-exporter-nsqv6" is waiting to start: PodInitializing
+Error from server (BadRequest): container "cuda-validation" in pod "nvidia-operator-validator-vw6mg" is waiting to start: PodInitializing
+Error from server (BadRequest): container "gpu-feature-discovery-imex-init" in pod "gpu-feature-discovery-j295s" is waiting to start: PodInitializing
+Error from server (BadRequest): container "nvidia-device-plugin" in pod "nvidia-device-plugin-daemonset-7t699" is waiting to start: PodInitializing
+Error from server (BadRequest): container "nvidia-dcgm-exporter" in pod "nvidia-dcgm-exporter-29n6t" is waiting to start: PodInitializing
 cat: /var/log/nvidia-container-runtime-debug.log: No such file or directory
 cat: /var/log/nvidia-container-cli-debug.log: No such file or directory
 cat: /var/log/nvidia-container-runtime.log: No such file or directory
 Cleaning logs...
-Raw logs saved to: /tmp/tmp.w5AaRdGrFz
-Cleaned logs saved to: /tmp/tmp.w5AaRdGrFz.clean
+Raw logs saved to: /tmp/tmp.sbtumnwdrj
+Cleaned logs saved to: /tmp/tmp.sbtumnwdrj.clean
 
 Cleaned Logs Content:
 ====================
 === CLEANED DEBUG LOG ===
 
 === Pod Status ===
-NAME                                                          READY   STATUS                  RESTARTS       AGE     IP            NODE                 NOMINATED NODE   READINESS GATES
-gpu-feature-discovery-b2dq8                                   0/1     Init:0/2                0              5m18s   10.244.0.16   kind-control-plane   <none>           <none>
-gpu-operator-669887d96d-5z4kt                                 1/1     Running                 1 (5m8s ago)   5m38s   10.244.0.6    kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-gc-76dc6664b8-wdbds       1/1     Running                 0              5m38s   10.244.0.5    kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-master-7d6b448f6d-8rgf2   1/1     Running                 0              5m38s   10.244.0.7    kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-worker-2v5pq              1/1     Running                 0              5m38s   10.244.0.8    kind-control-plane   <none>           <none>
-nvidia-container-toolkit-daemonset-lgrbk                      1/1     Running                 0              5m19s   10.244.0.9    kind-control-plane   <none>           <none>
-nvidia-dcgm-exporter-nsqv6                                    0/1     Init:0/1                0              5m19s   10.244.0.18   kind-control-plane   <none>           <none>
-nvidia-device-plugin-daemonset-fw8gr                          0/1     Init:0/1                0              5m19s   10.244.0.17   kind-control-plane   <none>           <none>
-nvidia-operator-validator-7zqkr                               0/1     Init:CrashLoopBackOff   5 (94s ago)    5m19s   10.244.0.19   kind-control-plane   <none>           <none>
+NAME                                                          READY   STATUS                  RESTARTS        AGE     IP            NODE                 NOMINATED NODE   READINESS GATES
+gpu-feature-discovery-j295s                                   0/1     Init:0/2                0               6m54s   10.244.0.18   kind-control-plane   <none>           <none>
+gpu-operator-669887d96d-nbbdr                                 1/1     Running                 1 (6m38s ago)   7m14s   10.244.0.8    kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-gc-76dc6664b8-hh7rz       1/1     Running                 0               7m14s   10.244.0.7    kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-master-7d6b448f6d-l7s6g   1/1     Running                 0               7m14s   10.244.0.6    kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-worker-b478g              1/1     Running                 0               7m14s   10.244.0.5    kind-control-plane   <none>           <none>
+nvidia-container-toolkit-daemonset-4drrm                      1/1     Running                 0               6m54s   10.244.0.9    kind-control-plane   <none>           <none>
+nvidia-dcgm-exporter-29n6t                                    0/1     Init:0/1                0               6m54s   10.244.0.15   kind-control-plane   <none>           <none>
+nvidia-device-plugin-daemonset-7t699                          0/1     Init:0/1                0               6m54s   10.244.0.16   kind-control-plane   <none>           <none>
+nvidia-operator-validator-vw6mg                               0/1     Init:CrashLoopBackOff   6 (34s ago)     6m54s   10.244.0.17   kind-control-plane   <none>           <none>
 
 
 === Unique Error Messages ===
-Nov 02 01:52:16 kind-control-plane containerd[6293]: time="2024-11-02T01:52:16.135884617Z" level=warning msg="cleaning up after shim disconnected" id=e7ad82ac72a26c3119b1fcd89daeaeb9e10f513c8fdbff41d04b6f5121e35403 namespace=k8s.io
-Nov 02 01:52:16 kind-control-plane containerd[6293]: time="2024-11-02T01:52:16.669918073Z" level=error msg="RemoveContainer for \"c5c2a53984f257341e66169f55cc9b4fa0794feaecf7228ffdffce80589f6e6c\" failed" error="failed to set removing state for container \"c5c2a53984f257341e66169f55cc9b4fa0794feaecf7228ffdffce80589f6e6c\": container is already in removing state"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap1 /host-dev-char/238:1: file exists"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap2 /host-dev-char/238:2: file exists"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm /host-dev-char/235:0: file exists"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm-tools /host-dev-char/235:1: file exists"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia0 /host-dev-char/195:0: file exists"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia1 /host-dev-char/195:1: file exists"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidiactl /host-dev-char/195:255: file exists"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/aarch64-linux-gnu: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/x86_64-linux-gnu/libnvidia-ml.so: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-container-go.so.1': error resolving link '/usr/lib64/libnvidia-container-go.so.1': lstat /usr/lib64/libnvidia-container-go.so.1: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-container.so.1': error resolving link '/usr/lib64/libnvidia-container.so.1': lstat /usr/lib64/libnvidia-container.so.1: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-ml.so': error resolving link '/usr/lib64/libnvidia-ml.so': lstat /usr/lib64/libnvidia-ml.so: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=warning msg="Error finding library path for root /: error locating NVIDIA management library: error locating library 'libnvidia-ml.so'"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap1 /host-dev-char/238:1: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap10 /host-dev-char/238:10: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap100 /host-dev-char/238:100: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap101 /host-dev-char/238:101: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap102 /host-dev-char/238:102: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap103 /host-dev-char/238:103: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap104 /host-dev-char/238:104: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap105 /host-dev-char/238:105: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap106 /host-dev-char/238:106: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap107 /host-dev-char/238:107: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap108 /host-dev-char/238:108: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap109 /host-dev-char/238:109: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap11 /host-dev-char/238:11: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap110 /host-dev-char/238:110: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap111 /host-dev-char/238:111: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap112 /host-dev-char/238:112: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap113 /host-dev-char/238:113: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap114 /host-dev-char/238:114: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap115 /host-dev-char/238:115: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap116 /host-dev-char/238:116: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap117 /host-dev-char/238:117: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap118 /host-dev-char/238:118: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap119 /host-dev-char/238:119: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap12 /host-dev-char/238:12: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap120 /host-dev-char/238:120: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap121 /host-dev-char/238:121: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap122 /host-dev-char/238:122: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap123 /host-dev-char/238:123: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap124 /host-dev-char/238:124: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap125 /host-dev-char/238:125: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap126 /host-dev-char/238:126: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap127 /host-dev-char/238:127: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap128 /host-dev-char/238:128: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap129 /host-dev-char/238:129: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap13 /host-dev-char/238:13: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap130 /host-dev-char/238:130: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap131 /host-dev-char/238:131: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap132 /host-dev-char/238:132: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap133 /host-dev-char/238:133: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap134 /host-dev-char/238:134: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap135 /host-dev-char/238:135: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap136 /host-dev-char/238:136: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap137 /host-dev-char/238:137: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap138 /host-dev-char/238:138: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap139 /host-dev-char/238:139: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap14 /host-dev-char/238:14: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap140 /host-dev-char/238:140: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap141 /host-dev-char/238:141: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap142 /host-dev-char/238:142: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap143 /host-dev-char/238:143: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap144 /host-dev-char/238:144: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap145 /host-dev-char/238:145: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap146 /host-dev-char/238:146: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap147 /host-dev-char/238:147: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap148 /host-dev-char/238:148: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap149 /host-dev-char/238:149: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap15 /host-dev-char/238:15: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap150 /host-dev-char/238:150: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap151 /host-dev-char/238:151: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap152 /host-dev-char/238:152: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap153 /host-dev-char/238:153: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap154 /host-dev-char/238:154: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap155 /host-dev-char/238:155: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap156 /host-dev-char/238:156: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap157 /host-dev-char/238:157: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap158 /host-dev-char/238:158: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap159 /host-dev-char/238:159: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap16 /host-dev-char/238:16: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap160 /host-dev-char/238:160: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap161 /host-dev-char/238:161: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap162 /host-dev-char/238:162: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap163 /host-dev-char/238:163: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap164 /host-dev-char/238:164: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap165 /host-dev-char/238:165: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap166 /host-dev-char/238:166: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap167 /host-dev-char/238:167: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap168 /host-dev-char/238:168: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap169 /host-dev-char/238:169: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap17 /host-dev-char/238:17: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap170 /host-dev-char/238:170: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap171 /host-dev-char/238:171: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap172 /host-dev-char/238:172: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap173 /host-dev-char/238:173: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap174 /host-dev-char/238:174: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap175 /host-dev-char/238:175: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap176 /host-dev-char/238:176: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap177 /host-dev-char/238:177: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap178 /host-dev-char/238:178: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap179 /host-dev-char/238:179: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap18 /host-dev-char/238:18: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap180 /host-dev-char/238:180: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap181 /host-dev-char/238:181: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap182 /host-dev-char/238:182: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap183 /host-dev-char/238:183: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap184 /host-dev-char/238:184: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap185 /host-dev-char/238:185: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap186 /host-dev-char/238:186: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap187 /host-dev-char/238:187: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap188 /host-dev-char/238:188: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap189 /host-dev-char/238:189: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap19 /host-dev-char/238:19: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap190 /host-dev-char/238:190: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap191 /host-dev-char/238:191: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap192 /host-dev-char/238:192: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap193 /host-dev-char/238:193: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap194 /host-dev-char/238:194: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap195 /host-dev-char/238:195: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap196 /host-dev-char/238:196: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap197 /host-dev-char/238:197: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap198 /host-dev-char/238:198: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap199 /host-dev-char/238:199: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap2 /host-dev-char/238:2: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap20 /host-dev-char/238:20: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap200 /host-dev-char/238:200: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap201 /host-dev-char/238:201: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap202 /host-dev-char/238:202: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap203 /host-dev-char/238:203: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap204 /host-dev-char/238:204: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap205 /host-dev-char/238:205: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap206 /host-dev-char/238:206: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap207 /host-dev-char/238:207: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap208 /host-dev-char/238:208: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap209 /host-dev-char/238:209: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap21 /host-dev-char/238:21: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap210 /host-dev-char/238:210: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap211 /host-dev-char/238:211: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap212 /host-dev-char/238:212: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap213 /host-dev-char/238:213: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap214 /host-dev-char/238:214: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap215 /host-dev-char/238:215: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap216 /host-dev-char/238:216: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap217 /host-dev-char/238:217: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap218 /host-dev-char/238:218: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap219 /host-dev-char/238:219: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap22 /host-dev-char/238:22: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap220 /host-dev-char/238:220: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap221 /host-dev-char/238:221: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap222 /host-dev-char/238:222: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap223 /host-dev-char/238:223: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap224 /host-dev-char/238:224: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap225 /host-dev-char/238:225: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap226 /host-dev-char/238:226: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap227 /host-dev-char/238:227: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap228 /host-dev-char/238:228: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap229 /host-dev-char/238:229: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap23 /host-dev-char/238:23: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap230 /host-dev-char/238:230: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap231 /host-dev-char/238:231: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap232 /host-dev-char/238:232: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap233 /host-dev-char/238:233: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap234 /host-dev-char/238:234: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap235 /host-dev-char/238:235: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap236 /host-dev-char/238:236: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap237 /host-dev-char/238:237: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap238 /host-dev-char/238:238: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap239 /host-dev-char/238:239: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap24 /host-dev-char/238:24: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap240 /host-dev-char/238:240: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap241 /host-dev-char/238:241: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap242 /host-dev-char/238:242: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap243 /host-dev-char/238:243: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap244 /host-dev-char/238:244: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap245 /host-dev-char/238:245: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap246 /host-dev-char/238:246: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap247 /host-dev-char/238:247: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap248 /host-dev-char/238:248: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap249 /host-dev-char/238:249: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap25 /host-dev-char/238:25: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap250 /host-dev-char/238:250: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap251 /host-dev-char/238:251: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap252 /host-dev-char/238:252: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap253 /host-dev-char/238:253: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap254 /host-dev-char/238:254: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap255 /host-dev-char/238:255: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap256 /host-dev-char/238:256: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap257 /host-dev-char/238:257: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap258 /host-dev-char/238:258: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap259 /host-dev-char/238:259: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap26 /host-dev-char/238:26: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap260 /host-dev-char/238:260: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap261 /host-dev-char/238:261: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap262 /host-dev-char/238:262: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap263 /host-dev-char/238:263: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap264 /host-dev-char/238:264: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap265 /host-dev-char/238:265: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap266 /host-dev-char/238:266: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap267 /host-dev-char/238:267: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap268 /host-dev-char/238:268: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap269 /host-dev-char/238:269: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap27 /host-dev-char/238:27: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap270 /host-dev-char/238:270: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap271 /host-dev-char/238:271: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap272 /host-dev-char/238:272: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap28 /host-dev-char/238:28: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap29 /host-dev-char/238:29: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap3 /host-dev-char/238:3: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap30 /host-dev-char/238:30: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap31 /host-dev-char/238:31: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap32 /host-dev-char/238:32: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap33 /host-dev-char/238:33: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap34 /host-dev-char/238:34: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap35 /host-dev-char/238:35: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap36 /host-dev-char/238:36: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap37 /host-dev-char/238:37: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap38 /host-dev-char/238:38: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap39 /host-dev-char/238:39: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap4 /host-dev-char/238:4: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap40 /host-dev-char/238:40: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap41 /host-dev-char/238:41: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap42 /host-dev-char/238:42: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap43 /host-dev-char/238:43: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap44 /host-dev-char/238:44: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap45 /host-dev-char/238:45: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap46 /host-dev-char/238:46: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap47 /host-dev-char/238:47: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap48 /host-dev-char/238:48: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap49 /host-dev-char/238:49: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap5 /host-dev-char/238:5: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap50 /host-dev-char/238:50: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap51 /host-dev-char/238:51: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap52 /host-dev-char/238:52: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap53 /host-dev-char/238:53: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap54 /host-dev-char/238:54: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap55 /host-dev-char/238:55: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap56 /host-dev-char/238:56: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap57 /host-dev-char/238:57: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap58 /host-dev-char/238:58: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap59 /host-dev-char/238:59: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap6 /host-dev-char/238:6: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap60 /host-dev-char/238:60: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap61 /host-dev-char/238:61: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap62 /host-dev-char/238:62: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap63 /host-dev-char/238:63: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap64 /host-dev-char/238:64: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap65 /host-dev-char/238:65: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap66 /host-dev-char/238:66: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap67 /host-dev-char/238:67: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap68 /host-dev-char/238:68: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap69 /host-dev-char/238:69: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap7 /host-dev-char/238:7: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap70 /host-dev-char/238:70: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap71 /host-dev-char/238:71: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap72 /host-dev-char/238:72: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap73 /host-dev-char/238:73: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap74 /host-dev-char/238:74: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap75 /host-dev-char/238:75: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap76 /host-dev-char/238:76: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap77 /host-dev-char/238:77: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap78 /host-dev-char/238:78: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap79 /host-dev-char/238:79: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap8 /host-dev-char/238:8: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap80 /host-dev-char/238:80: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap81 /host-dev-char/238:81: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap82 /host-dev-char/238:82: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap83 /host-dev-char/238:83: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap84 /host-dev-char/238:84: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap85 /host-dev-char/238:85: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap86 /host-dev-char/238:86: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap87 /host-dev-char/238:87: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap88 /host-dev-char/238:88: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap89 /host-dev-char/238:89: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap9 /host-dev-char/238:9: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap90 /host-dev-char/238:90: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap91 /host-dev-char/238:91: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap92 /host-dev-char/238:92: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap93 /host-dev-char/238:93: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap94 /host-dev-char/238:94: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap95 /host-dev-char/238:95: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap96 /host-dev-char/238:96: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap97 /host-dev-char/238:97: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap98 /host-dev-char/238:98: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap99 /host-dev-char/238:99: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-modeset /host-dev-char/195:254: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm /host-dev-char/235:0: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm-tools /host-dev-char/235:1: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia0 /host-dev-char/195:0: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia1 /host-dev-char/195:1: file exists"
-[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidiactl /host-dev-char/195:255: file exists"
-[pod/nvidia-operator-validator-7zqkr/toolkit-validation] time="2024-11-02T01:52:16Z" level=info msg="Error: error validating toolkit installation: exit status 12"
+Nov 02 02:13:33 kind-control-plane containerd[6205]: time="2024-11-02T02:13:33.855322605Z" level=warning msg="cleaning up after shim disconnected" id=a288470cb35c8a33a16845738f048dfd494fbfe53bd8ef3e1d94bf516f97e0c8 namespace=k8s.io
+Nov 02 02:13:34 kind-control-plane containerd[6205]: time="2024-11-02T02:13:34.694522522Z" level=error msg="RemoveContainer for \"8202e1d214f8eddc6346d363dc6f7845c1efdf688555ee4fa85d80b6b208ce8a\" failed" error="failed to set removing state for container \"8202e1d214f8eddc6346d363dc6f7845c1efdf688555ee4fa85d80b6b208ce8a\": container is already in removing state"
+[pod/nvidia-container-toolkit-daemonset-4drrm/driver-validation] time="2024-11-02T02:07:34Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap1 /host-dev-char/238:1: file exists"
+[pod/nvidia-container-toolkit-daemonset-4drrm/driver-validation] time="2024-11-02T02:07:34Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap2 /host-dev-char/238:2: file exists"
+[pod/nvidia-container-toolkit-daemonset-4drrm/driver-validation] time="2024-11-02T02:07:34Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm /host-dev-char/235:0: file exists"
+[pod/nvidia-container-toolkit-daemonset-4drrm/driver-validation] time="2024-11-02T02:07:34Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm-tools /host-dev-char/235:1: file exists"
+[pod/nvidia-container-toolkit-daemonset-4drrm/driver-validation] time="2024-11-02T02:07:34Z" level=warning msg="Could not create symlink: symlink /dev/nvidia0 /host-dev-char/195:0: file exists"
+[pod/nvidia-container-toolkit-daemonset-4drrm/driver-validation] time="2024-11-02T02:07:34Z" level=warning msg="Could not create symlink: symlink /dev/nvidia1 /host-dev-char/195:1: file exists"
+[pod/nvidia-container-toolkit-daemonset-4drrm/driver-validation] time="2024-11-02T02:07:34Z" level=warning msg="Could not create symlink: symlink /dev/nvidiactl /host-dev-char/195:255: file exists"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/aarch64-linux-gnu: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/x86_64-linux-gnu/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-container-go.so.1': error resolving link '/usr/lib64/libnvidia-container-go.so.1': lstat /usr/lib64/libnvidia-container-go.so.1: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-container.so.1': error resolving link '/usr/lib64/libnvidia-container.so.1': lstat /usr/lib64/libnvidia-container.so.1: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-ml.so': error resolving link '/usr/lib64/libnvidia-ml.so': lstat /usr/lib64/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=warning msg="Error finding library path for root /: error locating NVIDIA management library: error locating library 'libnvidia-ml.so'"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap1 /host-dev-char/238:1: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap10 /host-dev-char/238:10: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap100 /host-dev-char/238:100: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap101 /host-dev-char/238:101: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap102 /host-dev-char/238:102: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap103 /host-dev-char/238:103: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap104 /host-dev-char/238:104: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap105 /host-dev-char/238:105: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap106 /host-dev-char/238:106: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap107 /host-dev-char/238:107: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap108 /host-dev-char/238:108: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap109 /host-dev-char/238:109: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap11 /host-dev-char/238:11: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap110 /host-dev-char/238:110: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap111 /host-dev-char/238:111: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap112 /host-dev-char/238:112: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap113 /host-dev-char/238:113: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap114 /host-dev-char/238:114: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap115 /host-dev-char/238:115: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap116 /host-dev-char/238:116: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap117 /host-dev-char/238:117: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap118 /host-dev-char/238:118: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap119 /host-dev-char/238:119: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap12 /host-dev-char/238:12: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap120 /host-dev-char/238:120: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap121 /host-dev-char/238:121: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap122 /host-dev-char/238:122: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap123 /host-dev-char/238:123: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap124 /host-dev-char/238:124: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap125 /host-dev-char/238:125: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap126 /host-dev-char/238:126: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap127 /host-dev-char/238:127: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap128 /host-dev-char/238:128: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap129 /host-dev-char/238:129: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap13 /host-dev-char/238:13: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap130 /host-dev-char/238:130: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap131 /host-dev-char/238:131: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap132 /host-dev-char/238:132: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap133 /host-dev-char/238:133: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap134 /host-dev-char/238:134: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap135 /host-dev-char/238:135: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap136 /host-dev-char/238:136: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap137 /host-dev-char/238:137: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap138 /host-dev-char/238:138: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap139 /host-dev-char/238:139: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap14 /host-dev-char/238:14: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap140 /host-dev-char/238:140: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap141 /host-dev-char/238:141: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap142 /host-dev-char/238:142: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap143 /host-dev-char/238:143: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap144 /host-dev-char/238:144: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap145 /host-dev-char/238:145: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap146 /host-dev-char/238:146: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap147 /host-dev-char/238:147: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap148 /host-dev-char/238:148: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap149 /host-dev-char/238:149: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap15 /host-dev-char/238:15: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap150 /host-dev-char/238:150: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap151 /host-dev-char/238:151: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap152 /host-dev-char/238:152: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap153 /host-dev-char/238:153: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap154 /host-dev-char/238:154: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap155 /host-dev-char/238:155: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap156 /host-dev-char/238:156: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap157 /host-dev-char/238:157: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap158 /host-dev-char/238:158: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap159 /host-dev-char/238:159: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap16 /host-dev-char/238:16: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap160 /host-dev-char/238:160: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap161 /host-dev-char/238:161: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap162 /host-dev-char/238:162: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap163 /host-dev-char/238:163: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap164 /host-dev-char/238:164: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap165 /host-dev-char/238:165: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap166 /host-dev-char/238:166: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap167 /host-dev-char/238:167: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap168 /host-dev-char/238:168: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap169 /host-dev-char/238:169: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap17 /host-dev-char/238:17: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap170 /host-dev-char/238:170: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap171 /host-dev-char/238:171: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap172 /host-dev-char/238:172: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap173 /host-dev-char/238:173: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap174 /host-dev-char/238:174: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap175 /host-dev-char/238:175: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap176 /host-dev-char/238:176: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap177 /host-dev-char/238:177: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap178 /host-dev-char/238:178: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap179 /host-dev-char/238:179: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap18 /host-dev-char/238:18: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap180 /host-dev-char/238:180: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap181 /host-dev-char/238:181: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap182 /host-dev-char/238:182: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap183 /host-dev-char/238:183: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap184 /host-dev-char/238:184: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap185 /host-dev-char/238:185: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap186 /host-dev-char/238:186: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap187 /host-dev-char/238:187: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap188 /host-dev-char/238:188: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap189 /host-dev-char/238:189: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap19 /host-dev-char/238:19: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap190 /host-dev-char/238:190: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap191 /host-dev-char/238:191: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap192 /host-dev-char/238:192: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap193 /host-dev-char/238:193: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap194 /host-dev-char/238:194: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap195 /host-dev-char/238:195: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap196 /host-dev-char/238:196: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap197 /host-dev-char/238:197: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap198 /host-dev-char/238:198: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap199 /host-dev-char/238:199: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap2 /host-dev-char/238:2: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap20 /host-dev-char/238:20: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap200 /host-dev-char/238:200: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap201 /host-dev-char/238:201: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap202 /host-dev-char/238:202: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap203 /host-dev-char/238:203: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap204 /host-dev-char/238:204: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap205 /host-dev-char/238:205: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap206 /host-dev-char/238:206: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap207 /host-dev-char/238:207: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap208 /host-dev-char/238:208: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap209 /host-dev-char/238:209: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap21 /host-dev-char/238:21: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap210 /host-dev-char/238:210: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap211 /host-dev-char/238:211: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap212 /host-dev-char/238:212: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap213 /host-dev-char/238:213: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap214 /host-dev-char/238:214: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap215 /host-dev-char/238:215: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap216 /host-dev-char/238:216: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap217 /host-dev-char/238:217: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap218 /host-dev-char/238:218: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap219 /host-dev-char/238:219: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap22 /host-dev-char/238:22: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap220 /host-dev-char/238:220: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap221 /host-dev-char/238:221: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap222 /host-dev-char/238:222: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap223 /host-dev-char/238:223: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap224 /host-dev-char/238:224: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap225 /host-dev-char/238:225: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap226 /host-dev-char/238:226: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap227 /host-dev-char/238:227: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap228 /host-dev-char/238:228: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap229 /host-dev-char/238:229: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap23 /host-dev-char/238:23: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap230 /host-dev-char/238:230: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap231 /host-dev-char/238:231: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap232 /host-dev-char/238:232: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap233 /host-dev-char/238:233: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap234 /host-dev-char/238:234: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap235 /host-dev-char/238:235: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap236 /host-dev-char/238:236: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap237 /host-dev-char/238:237: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap238 /host-dev-char/238:238: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap239 /host-dev-char/238:239: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap24 /host-dev-char/238:24: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap240 /host-dev-char/238:240: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap241 /host-dev-char/238:241: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap242 /host-dev-char/238:242: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap243 /host-dev-char/238:243: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap244 /host-dev-char/238:244: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap245 /host-dev-char/238:245: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap246 /host-dev-char/238:246: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap247 /host-dev-char/238:247: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap248 /host-dev-char/238:248: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap249 /host-dev-char/238:249: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap25 /host-dev-char/238:25: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap250 /host-dev-char/238:250: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap251 /host-dev-char/238:251: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap252 /host-dev-char/238:252: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap253 /host-dev-char/238:253: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap254 /host-dev-char/238:254: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap255 /host-dev-char/238:255: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap256 /host-dev-char/238:256: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap257 /host-dev-char/238:257: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap258 /host-dev-char/238:258: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap259 /host-dev-char/238:259: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap26 /host-dev-char/238:26: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap260 /host-dev-char/238:260: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap261 /host-dev-char/238:261: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap262 /host-dev-char/238:262: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap263 /host-dev-char/238:263: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap264 /host-dev-char/238:264: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap265 /host-dev-char/238:265: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap266 /host-dev-char/238:266: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap267 /host-dev-char/238:267: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap268 /host-dev-char/238:268: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap269 /host-dev-char/238:269: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap27 /host-dev-char/238:27: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap270 /host-dev-char/238:270: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap271 /host-dev-char/238:271: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap272 /host-dev-char/238:272: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap28 /host-dev-char/238:28: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap29 /host-dev-char/238:29: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap3 /host-dev-char/238:3: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap30 /host-dev-char/238:30: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap31 /host-dev-char/238:31: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap32 /host-dev-char/238:32: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap33 /host-dev-char/238:33: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap34 /host-dev-char/238:34: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap35 /host-dev-char/238:35: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap36 /host-dev-char/238:36: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap37 /host-dev-char/238:37: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap38 /host-dev-char/238:38: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap39 /host-dev-char/238:39: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap4 /host-dev-char/238:4: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap40 /host-dev-char/238:40: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap41 /host-dev-char/238:41: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap42 /host-dev-char/238:42: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap43 /host-dev-char/238:43: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap44 /host-dev-char/238:44: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap45 /host-dev-char/238:45: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap46 /host-dev-char/238:46: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap47 /host-dev-char/238:47: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap48 /host-dev-char/238:48: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap49 /host-dev-char/238:49: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap5 /host-dev-char/238:5: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap50 /host-dev-char/238:50: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap51 /host-dev-char/238:51: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap52 /host-dev-char/238:52: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap53 /host-dev-char/238:53: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap54 /host-dev-char/238:54: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap55 /host-dev-char/238:55: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap56 /host-dev-char/238:56: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap57 /host-dev-char/238:57: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap58 /host-dev-char/238:58: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap59 /host-dev-char/238:59: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap6 /host-dev-char/238:6: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap60 /host-dev-char/238:60: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap61 /host-dev-char/238:61: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap62 /host-dev-char/238:62: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap63 /host-dev-char/238:63: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap64 /host-dev-char/238:64: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap65 /host-dev-char/238:65: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap66 /host-dev-char/238:66: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap67 /host-dev-char/238:67: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap68 /host-dev-char/238:68: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap69 /host-dev-char/238:69: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap7 /host-dev-char/238:7: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap70 /host-dev-char/238:70: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap71 /host-dev-char/238:71: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap72 /host-dev-char/238:72: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap73 /host-dev-char/238:73: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap74 /host-dev-char/238:74: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap75 /host-dev-char/238:75: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap76 /host-dev-char/238:76: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap77 /host-dev-char/238:77: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap78 /host-dev-char/238:78: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap79 /host-dev-char/238:79: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap8 /host-dev-char/238:8: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap80 /host-dev-char/238:80: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap81 /host-dev-char/238:81: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap82 /host-dev-char/238:82: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap83 /host-dev-char/238:83: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap84 /host-dev-char/238:84: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap85 /host-dev-char/238:85: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap86 /host-dev-char/238:86: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap87 /host-dev-char/238:87: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap88 /host-dev-char/238:88: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap89 /host-dev-char/238:89: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap9 /host-dev-char/238:9: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap90 /host-dev-char/238:90: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap91 /host-dev-char/238:91: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap92 /host-dev-char/238:92: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap93 /host-dev-char/238:93: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap94 /host-dev-char/238:94: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap95 /host-dev-char/238:95: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap96 /host-dev-char/238:96: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap97 /host-dev-char/238:97: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap98 /host-dev-char/238:98: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap99 /host-dev-char/238:99: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-modeset /host-dev-char/195:254: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm /host-dev-char/235:0: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm-tools /host-dev-char/235:1: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia0 /host-dev-char/195:0: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidia1 /host-dev-char/195:1: file exists"
+[pod/nvidia-operator-validator-vw6mg/driver-validation] time="2024-11-02T02:08:02Z" level=warning msg="Could not create symlink: symlink /dev/nvidiactl /host-dev-char/195:255: file exists"
+[pod/nvidia-operator-validator-vw6mg/toolkit-validation] time="2024-11-02T02:13:33Z" level=info msg="Error: error validating toolkit installation: exit status 12"
 
 === NVIDIA Libraries ===
 
@@ -338,28 +338,28 @@ Nov 02 01:52:16 kind-control-plane containerd[6293]: time="2024-11-02T01:52:16.6
 -rwxr-xr-x 1 root root   3322680 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.104.12
 -rwxr-xr-x 1 root root   4553912 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.183.01
 === GPU Feature Discovery Logs ===
-[pod/gpu-feature-discovery-b2dq8/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Checking library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so'"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Checking library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so'"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Checking library candidate '/usr/lib64/libnvidia-ml.so'"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Finding library libnvidia-ml.so (root=/)"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental'"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installing 'nvidia-container-runtime.experimental' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installing executable 'nvidia-container-runtime.experimental' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/aarch64-linux-gnu: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/x86_64-linux-gnu/libnvidia-ml.so: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-ml.so': error resolving link '/usr/lib64/libnvidia-ml.so': lstat /usr/lib64/libnvidia-ml.so: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Using library root "
-[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=warning msg="Error finding library path for root /: error locating NVIDIA management library: error locating library 'libnvidia-ml.so'"
-[pod/nvidia-operator-validator-7zqkr/toolkit-validation] NVIDIA-SMI couldn't find libnvidia-ml.so library in your system. Please make sure that the NVIDIA Display Driver is properly installed and present in your system.
-[pod/nvidia-operator-validator-7zqkr/toolkit-validation] Please also try adding directory that contains libnvidia-ml.so to your system PATH.
-[pod/nvidia-operator-validator-7zqkr/toolkit-validation] time="2024-11-02T01:52:16Z" level=info msg="Error: error validating toolkit installation: exit status 12"
-[pod/nvidia-operator-validator-7zqkr/toolkit-validation] toolkit is not ready
-lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
-lrwxrwxrwx 1 root root        26 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
+[pod/gpu-feature-discovery-j295s/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Checking library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so'"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Checking library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so'"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Checking library candidate '/usr/lib64/libnvidia-ml.so'"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Finding library libnvidia-ml.so (root=/)"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental'"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Installing 'nvidia-container-runtime.experimental' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Installing executable 'nvidia-container-runtime.experimental' to /usr/local/nvidia/toolkit"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/aarch64-linux-gnu: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/x86_64-linux-gnu/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-ml.so': error resolving link '/usr/lib64/libnvidia-ml.so': lstat /usr/lib64/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=info msg="Using library root "
+[pod/nvidia-container-toolkit-daemonset-4drrm/nvidia-container-toolkit-ctr] time="2024-11-02T02:07:48Z" level=warning msg="Error finding library path for root /: error locating NVIDIA management library: error locating library 'libnvidia-ml.so'"
+[pod/nvidia-operator-validator-vw6mg/toolkit-validation] NVIDIA-SMI couldn't find libnvidia-ml.so library in your system. Please make sure that the NVIDIA Display Driver is properly installed and present in your system.
+[pod/nvidia-operator-validator-vw6mg/toolkit-validation] Please also try adding directory that contains libnvidia-ml.so to your system PATH.
+[pod/nvidia-operator-validator-vw6mg/toolkit-validation] time="2024-11-02T02:13:33Z" level=info msg="Error: error validating toolkit installation: exit status 12"
+[pod/nvidia-operator-validator-vw6mg/toolkit-validation] toolkit is not ready
+lrwxrwxrwx 1 root root        20 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
+lrwxrwxrwx 1 root root        26 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1 -> libnvidia-ngx.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
+lrwxrwxrwx 1 root root        27 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
 --
 
 	libnvidia-tls.so (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so
@@ -401,52 +401,52 @@ lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidi
 -rwxr-xr-x 1 root root 118952432 May 12 20:29 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535.183.01
 === ldconfig Cache ===
 lrwxrwxrwx 1 root root        18 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so -> libnvidia-fbc.so.1
-lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so -> libnvidia-cfg.so.535
-lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
-lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so -> libnvidia-tls.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so -> libnvidia-cfg.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so -> libnvidia-tls.so.535
 lrwxrwxrwx 1 root root        21 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so -> libnvidia-encode.so.1
-lrwxrwxrwx 1 root root        21 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so -> libnvidia-glsi.so.535
-lrwxrwxrwx 1 root root        21 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so -> libnvidia-nvvm.so.535
-lrwxrwxrwx 1 root root        22 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so -> libnvidia-egl-gbm.so.1
-lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so -> libnvidia-glcore.so.535
-lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so -> libnvidia-opencl.so.535
-lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so -> libnvidia-pkcs11.so.535
-lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so -> libnvidia-rtcore.so.535
-lrwxrwxrwx 1 root root        24 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container.so -> libnvidia-container.so.1
-lrwxrwxrwx 1 root root        24 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so -> libnvidia-eglcore.so.535
+lrwxrwxrwx 1 root root        21 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so -> libnvidia-glsi.so.535
+lrwxrwxrwx 1 root root        21 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so -> libnvidia-nvvm.so.535
+lrwxrwxrwx 1 root root        22 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so -> libnvidia-egl-gbm.so.1
+lrwxrwxrwx 1 root root        23 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so -> libnvidia-glcore.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so -> libnvidia-opencl.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so -> libnvidia-pkcs11.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so -> libnvidia-rtcore.so.535
+lrwxrwxrwx 1 root root        24 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-container.so -> libnvidia-container.so.1
+lrwxrwxrwx 1 root root        24 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so -> libnvidia-eglcore.so.535
 lrwxrwxrwx 1 root root        26 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so -> libnvidia-opticalflow.so.1
-lrwxrwxrwx 1 root root        26 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so -> libnvidia-glvkspirv.so.535
-lrwxrwxrwx 1 root root        26 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
+lrwxrwxrwx 1 root root        26 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so -> libnvidia-glvkspirv.so.535
+lrwxrwxrwx 1 root root        26 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
 lrwxrwxrwx 1 root root        26 Nov  5  2023 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1 -> libnvidia-egl-gbm.so.1.1.0
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.1 -> libnvidia-cfg.so.535.183.01
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.1 -> libnvidia-fbc.so.535.183.01
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1 -> libnvidia-ngx.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.535 -> libnvidia-cfg.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so -> libnvidia-container-go.so.1
-lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.535 -> libnvidia-fbc.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
-lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535 -> libnvidia-tls.so.535.104.12
+lrwxrwxrwx 1 root root        27 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.535 -> libnvidia-cfg.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so -> libnvidia-container-go.so.1
+lrwxrwxrwx 1 root root        27 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.535 -> libnvidia-fbc.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
+lrwxrwxrwx 1 root root        27 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535 -> libnvidia-tls.so.535.104.12
 lrwxrwxrwx 1 root root        28 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4 -> libnvidia-nvvm.so.535.183.01
-lrwxrwxrwx 1 root root        28 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535 -> libnvidia-glsi.so.535.104.12
-lrwxrwxrwx 1 root root        28 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.535 -> libnvidia-nvvm.so.535.183.01
+lrwxrwxrwx 1 root root        28 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535 -> libnvidia-glsi.so.535.104.12
+lrwxrwxrwx 1 root root        28 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.535 -> libnvidia-nvvm.so.535.183.01
 lrwxrwxrwx 1 root root        29 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so -> libnvidia-ptxjitcompiler.so.1
-lrwxrwxrwx 1 root root        29 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1 -> libnvidia-container.so.1.15.0
+lrwxrwxrwx 1 root root        29 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1 -> libnvidia-container.so.1.15.0
 lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1 -> libnvidia-encode.so.535.183.01
 lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.1 -> libnvidia-opencl.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.535 -> libnvidia-encode.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535 -> libnvidia-glcore.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.535 -> libnvidia-opencl.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so.535 -> libnvidia-pkcs11.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535 -> libnvidia-rtcore.so.535.183.01
-lrwxrwxrwx 1 root root        31 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535 -> libnvidia-eglcore.so.535.104.12
-lrwxrwxrwx 1 root root        32 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1 -> libnvidia-container-go.so.1.15.0
-lrwxrwxrwx 1 root root        32 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so -> libnvidia-pkcs11-openssl3.so.535
-lrwxrwxrwx 1 root root        33 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535 -> libnvidia-glvkspirv.so.535.104.12
+lrwxrwxrwx 1 root root        30 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.535 -> libnvidia-encode.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535 -> libnvidia-glcore.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.535 -> libnvidia-opencl.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so.535 -> libnvidia-pkcs11.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535 -> libnvidia-rtcore.so.535.183.01
+lrwxrwxrwx 1 root root        31 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535 -> libnvidia-eglcore.so.535.104.12
+lrwxrwxrwx 1 root root        32 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1 -> libnvidia-container-go.so.1.15.0
+lrwxrwxrwx 1 root root        32 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so -> libnvidia-pkcs11-openssl3.so.535
+lrwxrwxrwx 1 root root        33 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535 -> libnvidia-glvkspirv.so.535.104.12
 lrwxrwxrwx 1 root root        35 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.1 -> libnvidia-opticalflow.so.535.183.01
-lrwxrwxrwx 1 root root        35 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.535 -> libnvidia-opticalflow.so.535.183.01
+lrwxrwxrwx 1 root root        35 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.535 -> libnvidia-opticalflow.so.535.183.01
 lrwxrwxrwx 1 root root        38 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.1 -> libnvidia-ptxjitcompiler.so.535.183.01
-lrwxrwxrwx 1 root root        38 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535 -> libnvidia-ptxjitcompiler.so.535.183.01
-lrwxrwxrwx 1 root root        39 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.535 -> libnvidia-pkcs11-openssl3.so.535.183.01
+lrwxrwxrwx 1 root root        38 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535 -> libnvidia-ptxjitcompiler.so.535.183.01
+lrwxrwxrwx 1 root root        39 Nov  2 02:06 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.535 -> libnvidia-pkcs11-openssl3.so.535.183.01
 
 === Containerd Config Highlights ===
         [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
@@ -471,7 +471,7 @@ lrwxrwxrwx 1 root root        39 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidi
 
 === nvidia-smi Output ===
 === nvidia-smi ===
-Sat Nov  2 01:53:51 2024       
+Sat Nov  2 02:14:08 2024       
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
 |-----------------------------------------+----------------------+----------------------+
