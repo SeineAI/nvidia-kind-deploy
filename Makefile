@@ -71,7 +71,7 @@ install-operators:
 	helm install gpu-operator \
 		nvidia/gpu-operator \
 		--set driver.enabled=false \
-		--set driver.version=$(shell nvidia-smi --query-gpu=driver_version --format=csv,noheader) \
+		--set driver.version=$$(nvidia-smi --query-gpu=driver_version --format=csv,noheader) \
 		--set toolkit.enabled=true \
 		--set devicePlugin.enabled=true \
 		--set migManager.enabled=false \
