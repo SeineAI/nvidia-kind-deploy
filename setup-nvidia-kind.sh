@@ -27,6 +27,7 @@ docker exec kind-control-plane mkdir -p /usr/lib/nvidia
 for lib in $(find /usr/lib/x86_64-linux-gnu -name "libnvidia-*.so*" -o -name "libcuda*.so*"); do
     basename=$(basename "$lib")
     docker cp "$lib" kind-control-plane:/usr/lib/x86_64-linux-gnu/
+    docker exec kind-control-plane chmod 755 "/usr/lib/x86_64-linux-gnu/$basename"
     # Create symlinks if needed
     if [[ $basename == *.so.* ]]; then
         base=$(echo "$basename" | cut -d. -f1).so
@@ -37,6 +38,7 @@ done
 # Specifically handle libnvidia-ml.so
 if [ -f "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1" ]; then
     docker cp "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1" kind-control-plane:/usr/lib/x86_64-linux-gnu/
+    docker exec kind-control-plane chmod 755 "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1"
     docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && ln -sf libnvidia-ml.so.1 libnvidia-ml.so"
 fi
 
@@ -59,6 +61,8 @@ ldconfig = "@/sbin/ldconfig.real"
 debug = "/var/log/nvidia-container-cli-debug.log"
 debug-file = "/var/log/nvidia-container-cli-debug.log"
 verbosity = "debug"
+root = "/usr/lib/x86_64-linux-gnu"
+path = ["/usr/lib/x86_64-linux-gnu", "/usr/local/nvidia/lib64", "/usr/bin"]
 
 [nvidia-container-runtime]
 debug = "/var/log/nvidia-container-runtime.log"
