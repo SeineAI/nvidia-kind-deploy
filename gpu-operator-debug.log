@@ -1,690 +1,454 @@
-=== GPU Operator Pod Status ===
-NAME                                                          READY   STATUS                  RESTARTS      AGE     IP            NODE                 NOMINATED NODE   READINESS GATES
-gpu-feature-discovery-mqsbg                                   0/1     Init:0/2                0             3m16s   10.244.0.16   kind-control-plane   <none>           <none>
-gpu-operator-669887d96d-pfrbb                                 1/1     Running                 0             3m35s   10.244.0.6    kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-gc-76dc6664b8-hz97j       1/1     Running                 0             3m35s   10.244.0.7    kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-master-7d6b448f6d-g7lpm   1/1     Running                 0             3m35s   10.244.0.5    kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-worker-rlnlp              1/1     Running                 0             3m35s   10.244.0.8    kind-control-plane   <none>           <none>
-nvidia-container-toolkit-daemonset-6h6m7                      1/1     Running                 0             3m17s   10.244.0.9    kind-control-plane   <none>           <none>
-nvidia-dcgm-exporter-9ch9d                                    0/1     Init:0/1                0             3m16s   10.244.0.19   kind-control-plane   <none>           <none>
-nvidia-device-plugin-daemonset-f7lgq                          0/1     Init:0/1                0             3m17s   10.244.0.18   kind-control-plane   <none>           <none>
-nvidia-operator-validator-s6vzt                               0/1     Init:CrashLoopBackOff   4 (75s ago)   3m17s   10.244.0.17   kind-control-plane   <none>           <none>
+Collecting logs...
+Error from server (BadRequest): container "cuda-validation" in pod "nvidia-operator-validator-7zqkr" is waiting to start: PodInitializing
+Error from server (BadRequest): container "gpu-feature-discovery-imex-init" in pod "gpu-feature-discovery-b2dq8" is waiting to start: PodInitializing
+Error from server (BadRequest): container "nvidia-device-plugin" in pod "nvidia-device-plugin-daemonset-fw8gr" is waiting to start: PodInitializing
+Error from server (BadRequest): container "nvidia-dcgm-exporter" in pod "nvidia-dcgm-exporter-nsqv6" is waiting to start: PodInitializing
+cat: /var/log/nvidia-container-runtime-debug.log: No such file or directory
+cat: /var/log/nvidia-container-cli-debug.log: No such file or directory
+cat: /var/log/nvidia-container-runtime.log: No such file or directory
+Cleaning logs...
+Raw logs saved to: /tmp/tmp.w5AaRdGrFz
+Cleaned logs saved to: /tmp/tmp.w5AaRdGrFz.clean
 
-=== Node Status ===
-NAME                 STATUS   ROLES           AGE    VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION    CONTAINER-RUNTIME
-kind-control-plane   Ready    control-plane   5m3s   v1.27.3   172.19.0.2    <none>        Debian GNU/Linux 11 (bullseye)   5.15.0-1058-ibm   containerd://1.7.1
+Cleaned Logs Content:
+====================
+=== CLEANED DEBUG LOG ===
 
-=== Node GPU Labels ===
-kind-control-plane   Ready    control-plane   5m3s   v1.27.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,feature.node.kubernetes.io/cpu-cpuid.ADX=true,feature.node.kubernetes.io/cpu-cpuid.AESNI=true,feature.node.kubernetes.io/cpu-cpuid.AVX2=true,feature.node.kubernetes.io/cpu-cpuid.AVX512BW=true,feature.node.kubernetes.io/cpu-cpuid.AVX512CD=true,feature.node.kubernetes.io/cpu-cpuid.AVX512DQ=true,feature.node.kubernetes.io/cpu-cpuid.AVX512F=true,feature.node.kubernetes.io/cpu-cpuid.AVX512VL=true,feature.node.kubernetes.io/cpu-cpuid.AVX512VNNI=true,feature.node.kubernetes.io/cpu-cpuid.AVX=true,feature.node.kubernetes.io/cpu-cpuid.CMPXCHG8=true,feature.node.kubernetes.io/cpu-cpuid.FMA3=true,feature.node.kubernetes.io/cpu-cpuid.FXSR=true,feature.node.kubernetes.io/cpu-cpuid.FXSROPT=true,feature.node.kubernetes.io/cpu-cpuid.HYPERVISOR=true,feature.node.kubernetes.io/cpu-cpuid.IA32_ARCH_CAP=true,feature.node.kubernetes.io/cpu-cpuid.IBPB=true,feature.node.kubernetes.io/cpu-cpuid.IBRS=true,feature.node.kubernetes.io/cpu-cpuid.LAHF=true,feature.node.kubernetes.io/cpu-cpuid.MD_CLEAR=true,feature.node.kubernetes.io/cpu-cpuid.MOVBE=true,feature.node.kubernetes.io/cpu-cpuid.OSXSAVE=true,feature.node.kubernetes.io/cpu-cpuid.SPEC_CTRL_SSBD=true,feature.node.kubernetes.io/cpu-cpuid.STIBP=true,feature.node.kubernetes.io/cpu-cpuid.SYSCALL=true,feature.node.kubernetes.io/cpu-cpuid.SYSEE=true,feature.node.kubernetes.io/cpu-cpuid.VMX=true,feature.node.kubernetes.io/cpu-cpuid.X87=true,feature.node.kubernetes.io/cpu-cpuid.XGETBV1=true,feature.node.kubernetes.io/cpu-cpuid.XSAVE=true,feature.node.kubernetes.io/cpu-cpuid.XSAVEC=true,feature.node.kubernetes.io/cpu-cpuid.XSAVEOPT=true,feature.node.kubernetes.io/cpu-cpuid.XSAVES=true,feature.node.kubernetes.io/cpu-hardware_multithreading=true,feature.node.kubernetes.io/cpu-model.family=6,feature.node.kubernetes.io/cpu-model.id=85,feature.node.kubernetes.io/cpu-model.vendor_id=Intel,feature.node.kubernetes.io/kernel-version.full=5.15.0-1058-ibm,feature.node.kubernetes.io/kernel-version.major=5,feature.node.kubernetes.io/kernel-version.minor=15,feature.node.kubernetes.io/kernel-version.revision=0,feature.node.kubernetes.io/memory-numa=true,feature.node.kubernetes.io/pci-1013.present=true,feature.node.kubernetes.io/pci-10de.present=true,feature.node.kubernetes.io/pci-1af4.present=true,feature.node.kubernetes.io/system-os_release.ID=debian,feature.node.kubernetes.io/system-os_release.VERSION_ID.major=11,feature.node.kubernetes.io/system-os_release.VERSION_ID=11,kubernetes.io/arch=amd64,kubernetes.io/hostname=kind-control-plane,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=,nvidia.com/gpu.deploy.container-toolkit=true,nvidia.com/gpu.deploy.dcgm-exporter=true,nvidia.com/gpu.deploy.dcgm=true,nvidia.com/gpu.deploy.device-plugin=true,nvidia.com/gpu.deploy.driver=true,nvidia.com/gpu.deploy.gpu-feature-discovery=true,nvidia.com/gpu.deploy.node-status-exporter=true,nvidia.com/gpu.deploy.operator-validator=true,nvidia.com/gpu.present=true,nvidia.com/gpu=true
+=== Pod Status ===
+NAME                                                          READY   STATUS                  RESTARTS       AGE     IP            NODE                 NOMINATED NODE   READINESS GATES
+gpu-feature-discovery-b2dq8                                   0/1     Init:0/2                0              5m18s   10.244.0.16   kind-control-plane   <none>           <none>
+gpu-operator-669887d96d-5z4kt                                 1/1     Running                 1 (5m8s ago)   5m38s   10.244.0.6    kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-gc-76dc6664b8-wdbds       1/1     Running                 0              5m38s   10.244.0.5    kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-master-7d6b448f6d-8rgf2   1/1     Running                 0              5m38s   10.244.0.7    kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-worker-2v5pq              1/1     Running                 0              5m38s   10.244.0.8    kind-control-plane   <none>           <none>
+nvidia-container-toolkit-daemonset-lgrbk                      1/1     Running                 0              5m19s   10.244.0.9    kind-control-plane   <none>           <none>
+nvidia-dcgm-exporter-nsqv6                                    0/1     Init:0/1                0              5m19s   10.244.0.18   kind-control-plane   <none>           <none>
+nvidia-device-plugin-daemonset-fw8gr                          0/1     Init:0/1                0              5m19s   10.244.0.17   kind-control-plane   <none>           <none>
+nvidia-operator-validator-7zqkr                               0/1     Init:CrashLoopBackOff   5 (94s ago)    5m19s   10.244.0.19   kind-control-plane   <none>           <none>
 
-=== Validator Pod Logs ===
-[pod/nvidia-operator-validator-s6vzt/toolkit-validation] time="2024-11-02T01:32:00Z" level=info msg="version: b96b4d08, commit: b96b4d0"
-[pod/nvidia-operator-validator-s6vzt/toolkit-validation] NVIDIA-SMI couldn't find libnvidia-ml.so library in your system. Please make sure that the NVIDIA Display Driver is properly installed and present in your system.
-[pod/nvidia-operator-validator-s6vzt/toolkit-validation] Please also try adding directory that contains libnvidia-ml.so to your system PATH.
-[pod/nvidia-operator-validator-s6vzt/toolkit-validation] toolkit is not ready
-[pod/nvidia-operator-validator-s6vzt/toolkit-validation] time="2024-11-02T01:32:00Z" level=info msg="Error: error validating toolkit installation: exit status 12"
-Error from server (BadRequest): container "cuda-validation" in pod "nvidia-operator-validator-s6vzt" is waiting to start: PodInitializing
 
-=== GPU Feature Discovery Logs ===
-Error from server (BadRequest): container "gpu-feature-discovery-imex-init" in pod "gpu-feature-discovery-mqsbg" is waiting to start: PodInitializing
-
-=== Device Plugin Logs ===
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-device-plugin-daemonset-f7lgq/toolkit-validation] waiting for nvidia container stack to be setup
-Error from server (BadRequest): container "nvidia-device-plugin" in pod "nvidia-device-plugin-daemonset-f7lgq" is waiting to start: PodInitializing
-
-=== Container Toolkit Logs ===
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:18Z" level=info msg="version: b96b4d08, commit: b96b4d0"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:18Z" level=info msg="Attempting to validate a pre-installed driver on the host"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] Sat Nov  2 01:30:18 2024       
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] +---------------------------------------------------------------------------------------+
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] | NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |-----------------------------------------+----------------------+----------------------+
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] | GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] | Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |                                         |                      |               MIG M. |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |=========================================+======================+======================|
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |   0  Tesla V100-PCIE-16GB           Off | 00000000:04:01.0 Off |                    0 |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] | N/A   37C    P0              25W / 250W |      0MiB / 16384MiB |      0%      Default |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |                                         |                      |                  N/A |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] +-----------------------------------------+----------------------+----------------------+
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |   1  Tesla V100-PCIE-16GB           Off | 00000000:04:02.0 Off |                    0 |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] | N/A   37C    P0              27W / 250W |      0MiB / 16384MiB |      0%      Default |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |                                         |                      |                  N/A |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] +-----------------------------------------+----------------------+----------------------+
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation]                                                                                          
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] +---------------------------------------------------------------------------------------+
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] | Processes:                                                                            |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |        ID   ID                                                             Usage      |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |=======================================================================================|
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] |  No running processes found                                                           |
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] +---------------------------------------------------------------------------------------+
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Detected a pre-installed driver on the host"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="creating symlinks under /dev/char that correspond to NVIDIA character devices"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Skipping: /dev/nvidiactl already exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Skipping: /dev/nvidia-modeset already exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Skipping: /dev/nvidia-uvm already exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Skipping: /dev/nvidia-uvm-tools already exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/195:254 => /dev/nvidia-modeset"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/195:255 => /dev/nvidiactl"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=warning msg="Could not create symlink: symlink /dev/nvidiactl /host-dev-char/195:255: file exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/235:0 => /dev/nvidia-uvm"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm /host-dev-char/235:0: file exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/235:1 => /dev/nvidia-uvm-tools"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm-tools /host-dev-char/235:1: file exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:1 => /dev/nvidia-caps/nvidia-cap1"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap1 /host-dev-char/238:1: file exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:2 => /dev/nvidia-caps/nvidia-cap2"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap2 /host-dev-char/238:2: file exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/195:0 => /dev/nvidia0"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=warning msg="Could not create symlink: symlink /dev/nvidia0 /host-dev-char/195:0: file exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:3 => /dev/nvidia-caps/nvidia-cap3"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:4 => /dev/nvidia-caps/nvidia-cap4"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:5 => /dev/nvidia-caps/nvidia-cap5"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:6 => /dev/nvidia-caps/nvidia-cap6"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:7 => /dev/nvidia-caps/nvidia-cap7"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:8 => /dev/nvidia-caps/nvidia-cap8"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:9 => /dev/nvidia-caps/nvidia-cap9"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:10 => /dev/nvidia-caps/nvidia-cap10"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:11 => /dev/nvidia-caps/nvidia-cap11"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:12 => /dev/nvidia-caps/nvidia-cap12"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:13 => /dev/nvidia-caps/nvidia-cap13"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:14 => /dev/nvidia-caps/nvidia-cap14"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:15 => /dev/nvidia-caps/nvidia-cap15"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:16 => /dev/nvidia-caps/nvidia-cap16"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:17 => /dev/nvidia-caps/nvidia-cap17"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:18 => /dev/nvidia-caps/nvidia-cap18"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:19 => /dev/nvidia-caps/nvidia-cap19"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:20 => /dev/nvidia-caps/nvidia-cap20"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:21 => /dev/nvidia-caps/nvidia-cap21"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:22 => /dev/nvidia-caps/nvidia-cap22"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:23 => /dev/nvidia-caps/nvidia-cap23"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:24 => /dev/nvidia-caps/nvidia-cap24"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:25 => /dev/nvidia-caps/nvidia-cap25"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:26 => /dev/nvidia-caps/nvidia-cap26"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:27 => /dev/nvidia-caps/nvidia-cap27"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:28 => /dev/nvidia-caps/nvidia-cap28"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:29 => /dev/nvidia-caps/nvidia-cap29"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:30 => /dev/nvidia-caps/nvidia-cap30"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:31 => /dev/nvidia-caps/nvidia-cap31"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:32 => /dev/nvidia-caps/nvidia-cap32"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:33 => /dev/nvidia-caps/nvidia-cap33"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:34 => /dev/nvidia-caps/nvidia-cap34"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:35 => /dev/nvidia-caps/nvidia-cap35"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:36 => /dev/nvidia-caps/nvidia-cap36"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:37 => /dev/nvidia-caps/nvidia-cap37"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:38 => /dev/nvidia-caps/nvidia-cap38"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:39 => /dev/nvidia-caps/nvidia-cap39"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:40 => /dev/nvidia-caps/nvidia-cap40"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:41 => /dev/nvidia-caps/nvidia-cap41"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:42 => /dev/nvidia-caps/nvidia-cap42"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:43 => /dev/nvidia-caps/nvidia-cap43"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:44 => /dev/nvidia-caps/nvidia-cap44"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:45 => /dev/nvidia-caps/nvidia-cap45"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:46 => /dev/nvidia-caps/nvidia-cap46"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:47 => /dev/nvidia-caps/nvidia-cap47"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:48 => /dev/nvidia-caps/nvidia-cap48"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:49 => /dev/nvidia-caps/nvidia-cap49"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:50 => /dev/nvidia-caps/nvidia-cap50"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:51 => /dev/nvidia-caps/nvidia-cap51"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:52 => /dev/nvidia-caps/nvidia-cap52"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:53 => /dev/nvidia-caps/nvidia-cap53"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:54 => /dev/nvidia-caps/nvidia-cap54"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:55 => /dev/nvidia-caps/nvidia-cap55"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:56 => /dev/nvidia-caps/nvidia-cap56"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:57 => /dev/nvidia-caps/nvidia-cap57"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:58 => /dev/nvidia-caps/nvidia-cap58"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:59 => /dev/nvidia-caps/nvidia-cap59"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:60 => /dev/nvidia-caps/nvidia-cap60"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:61 => /dev/nvidia-caps/nvidia-cap61"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:62 => /dev/nvidia-caps/nvidia-cap62"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:63 => /dev/nvidia-caps/nvidia-cap63"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:64 => /dev/nvidia-caps/nvidia-cap64"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:65 => /dev/nvidia-caps/nvidia-cap65"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:66 => /dev/nvidia-caps/nvidia-cap66"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:67 => /dev/nvidia-caps/nvidia-cap67"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:68 => /dev/nvidia-caps/nvidia-cap68"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:69 => /dev/nvidia-caps/nvidia-cap69"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:70 => /dev/nvidia-caps/nvidia-cap70"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:71 => /dev/nvidia-caps/nvidia-cap71"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:72 => /dev/nvidia-caps/nvidia-cap72"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:73 => /dev/nvidia-caps/nvidia-cap73"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:74 => /dev/nvidia-caps/nvidia-cap74"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:75 => /dev/nvidia-caps/nvidia-cap75"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:76 => /dev/nvidia-caps/nvidia-cap76"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:77 => /dev/nvidia-caps/nvidia-cap77"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:78 => /dev/nvidia-caps/nvidia-cap78"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:79 => /dev/nvidia-caps/nvidia-cap79"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:80 => /dev/nvidia-caps/nvidia-cap80"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:81 => /dev/nvidia-caps/nvidia-cap81"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:82 => /dev/nvidia-caps/nvidia-cap82"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:83 => /dev/nvidia-caps/nvidia-cap83"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:84 => /dev/nvidia-caps/nvidia-cap84"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:85 => /dev/nvidia-caps/nvidia-cap85"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:86 => /dev/nvidia-caps/nvidia-cap86"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:87 => /dev/nvidia-caps/nvidia-cap87"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:88 => /dev/nvidia-caps/nvidia-cap88"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:89 => /dev/nvidia-caps/nvidia-cap89"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:90 => /dev/nvidia-caps/nvidia-cap90"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:91 => /dev/nvidia-caps/nvidia-cap91"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:92 => /dev/nvidia-caps/nvidia-cap92"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:93 => /dev/nvidia-caps/nvidia-cap93"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:94 => /dev/nvidia-caps/nvidia-cap94"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:95 => /dev/nvidia-caps/nvidia-cap95"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:96 => /dev/nvidia-caps/nvidia-cap96"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:97 => /dev/nvidia-caps/nvidia-cap97"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:98 => /dev/nvidia-caps/nvidia-cap98"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:99 => /dev/nvidia-caps/nvidia-cap99"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:100 => /dev/nvidia-caps/nvidia-cap100"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:101 => /dev/nvidia-caps/nvidia-cap101"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:102 => /dev/nvidia-caps/nvidia-cap102"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:103 => /dev/nvidia-caps/nvidia-cap103"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:104 => /dev/nvidia-caps/nvidia-cap104"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:105 => /dev/nvidia-caps/nvidia-cap105"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:106 => /dev/nvidia-caps/nvidia-cap106"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:107 => /dev/nvidia-caps/nvidia-cap107"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:108 => /dev/nvidia-caps/nvidia-cap108"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:109 => /dev/nvidia-caps/nvidia-cap109"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:110 => /dev/nvidia-caps/nvidia-cap110"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:111 => /dev/nvidia-caps/nvidia-cap111"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:112 => /dev/nvidia-caps/nvidia-cap112"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:113 => /dev/nvidia-caps/nvidia-cap113"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:114 => /dev/nvidia-caps/nvidia-cap114"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:115 => /dev/nvidia-caps/nvidia-cap115"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:116 => /dev/nvidia-caps/nvidia-cap116"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:117 => /dev/nvidia-caps/nvidia-cap117"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:118 => /dev/nvidia-caps/nvidia-cap118"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:119 => /dev/nvidia-caps/nvidia-cap119"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:120 => /dev/nvidia-caps/nvidia-cap120"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:121 => /dev/nvidia-caps/nvidia-cap121"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:122 => /dev/nvidia-caps/nvidia-cap122"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:123 => /dev/nvidia-caps/nvidia-cap123"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:124 => /dev/nvidia-caps/nvidia-cap124"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:125 => /dev/nvidia-caps/nvidia-cap125"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:126 => /dev/nvidia-caps/nvidia-cap126"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:127 => /dev/nvidia-caps/nvidia-cap127"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:128 => /dev/nvidia-caps/nvidia-cap128"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:129 => /dev/nvidia-caps/nvidia-cap129"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:130 => /dev/nvidia-caps/nvidia-cap130"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:131 => /dev/nvidia-caps/nvidia-cap131"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:132 => /dev/nvidia-caps/nvidia-cap132"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:133 => /dev/nvidia-caps/nvidia-cap133"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:134 => /dev/nvidia-caps/nvidia-cap134"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:135 => /dev/nvidia-caps/nvidia-cap135"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:136 => /dev/nvidia-caps/nvidia-cap136"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:137 => /dev/nvidia-caps/nvidia-cap137"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/195:1 => /dev/nvidia1"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=warning msg="Could not create symlink: symlink /dev/nvidia1 /host-dev-char/195:1: file exists"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:138 => /dev/nvidia-caps/nvidia-cap138"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:139 => /dev/nvidia-caps/nvidia-cap139"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:140 => /dev/nvidia-caps/nvidia-cap140"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:141 => /dev/nvidia-caps/nvidia-cap141"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:142 => /dev/nvidia-caps/nvidia-cap142"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:143 => /dev/nvidia-caps/nvidia-cap143"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:144 => /dev/nvidia-caps/nvidia-cap144"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:145 => /dev/nvidia-caps/nvidia-cap145"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:146 => /dev/nvidia-caps/nvidia-cap146"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:147 => /dev/nvidia-caps/nvidia-cap147"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:148 => /dev/nvidia-caps/nvidia-cap148"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:149 => /dev/nvidia-caps/nvidia-cap149"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:150 => /dev/nvidia-caps/nvidia-cap150"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:151 => /dev/nvidia-caps/nvidia-cap151"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:152 => /dev/nvidia-caps/nvidia-cap152"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:153 => /dev/nvidia-caps/nvidia-cap153"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:154 => /dev/nvidia-caps/nvidia-cap154"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:155 => /dev/nvidia-caps/nvidia-cap155"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:156 => /dev/nvidia-caps/nvidia-cap156"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:157 => /dev/nvidia-caps/nvidia-cap157"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:158 => /dev/nvidia-caps/nvidia-cap158"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:159 => /dev/nvidia-caps/nvidia-cap159"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:160 => /dev/nvidia-caps/nvidia-cap160"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:161 => /dev/nvidia-caps/nvidia-cap161"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:162 => /dev/nvidia-caps/nvidia-cap162"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:163 => /dev/nvidia-caps/nvidia-cap163"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:164 => /dev/nvidia-caps/nvidia-cap164"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:165 => /dev/nvidia-caps/nvidia-cap165"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:166 => /dev/nvidia-caps/nvidia-cap166"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:167 => /dev/nvidia-caps/nvidia-cap167"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:168 => /dev/nvidia-caps/nvidia-cap168"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:169 => /dev/nvidia-caps/nvidia-cap169"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:170 => /dev/nvidia-caps/nvidia-cap170"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:171 => /dev/nvidia-caps/nvidia-cap171"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:172 => /dev/nvidia-caps/nvidia-cap172"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:173 => /dev/nvidia-caps/nvidia-cap173"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:174 => /dev/nvidia-caps/nvidia-cap174"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:175 => /dev/nvidia-caps/nvidia-cap175"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:176 => /dev/nvidia-caps/nvidia-cap176"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:177 => /dev/nvidia-caps/nvidia-cap177"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:178 => /dev/nvidia-caps/nvidia-cap178"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:179 => /dev/nvidia-caps/nvidia-cap179"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:180 => /dev/nvidia-caps/nvidia-cap180"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:181 => /dev/nvidia-caps/nvidia-cap181"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:182 => /dev/nvidia-caps/nvidia-cap182"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:183 => /dev/nvidia-caps/nvidia-cap183"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:184 => /dev/nvidia-caps/nvidia-cap184"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:185 => /dev/nvidia-caps/nvidia-cap185"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:186 => /dev/nvidia-caps/nvidia-cap186"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:187 => /dev/nvidia-caps/nvidia-cap187"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:188 => /dev/nvidia-caps/nvidia-cap188"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:189 => /dev/nvidia-caps/nvidia-cap189"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:190 => /dev/nvidia-caps/nvidia-cap190"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:191 => /dev/nvidia-caps/nvidia-cap191"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:192 => /dev/nvidia-caps/nvidia-cap192"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:193 => /dev/nvidia-caps/nvidia-cap193"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:194 => /dev/nvidia-caps/nvidia-cap194"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:195 => /dev/nvidia-caps/nvidia-cap195"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:196 => /dev/nvidia-caps/nvidia-cap196"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:197 => /dev/nvidia-caps/nvidia-cap197"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:198 => /dev/nvidia-caps/nvidia-cap198"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:199 => /dev/nvidia-caps/nvidia-cap199"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:200 => /dev/nvidia-caps/nvidia-cap200"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:201 => /dev/nvidia-caps/nvidia-cap201"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:202 => /dev/nvidia-caps/nvidia-cap202"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:203 => /dev/nvidia-caps/nvidia-cap203"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:204 => /dev/nvidia-caps/nvidia-cap204"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:205 => /dev/nvidia-caps/nvidia-cap205"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:206 => /dev/nvidia-caps/nvidia-cap206"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:207 => /dev/nvidia-caps/nvidia-cap207"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:208 => /dev/nvidia-caps/nvidia-cap208"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:209 => /dev/nvidia-caps/nvidia-cap209"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:210 => /dev/nvidia-caps/nvidia-cap210"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:211 => /dev/nvidia-caps/nvidia-cap211"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:212 => /dev/nvidia-caps/nvidia-cap212"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:213 => /dev/nvidia-caps/nvidia-cap213"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:214 => /dev/nvidia-caps/nvidia-cap214"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:215 => /dev/nvidia-caps/nvidia-cap215"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:216 => /dev/nvidia-caps/nvidia-cap216"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:217 => /dev/nvidia-caps/nvidia-cap217"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:218 => /dev/nvidia-caps/nvidia-cap218"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:219 => /dev/nvidia-caps/nvidia-cap219"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:220 => /dev/nvidia-caps/nvidia-cap220"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:221 => /dev/nvidia-caps/nvidia-cap221"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:222 => /dev/nvidia-caps/nvidia-cap222"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:223 => /dev/nvidia-caps/nvidia-cap223"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:224 => /dev/nvidia-caps/nvidia-cap224"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:225 => /dev/nvidia-caps/nvidia-cap225"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:226 => /dev/nvidia-caps/nvidia-cap226"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:227 => /dev/nvidia-caps/nvidia-cap227"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:228 => /dev/nvidia-caps/nvidia-cap228"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:229 => /dev/nvidia-caps/nvidia-cap229"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:230 => /dev/nvidia-caps/nvidia-cap230"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:231 => /dev/nvidia-caps/nvidia-cap231"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:232 => /dev/nvidia-caps/nvidia-cap232"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:233 => /dev/nvidia-caps/nvidia-cap233"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:234 => /dev/nvidia-caps/nvidia-cap234"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:235 => /dev/nvidia-caps/nvidia-cap235"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:236 => /dev/nvidia-caps/nvidia-cap236"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:237 => /dev/nvidia-caps/nvidia-cap237"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:238 => /dev/nvidia-caps/nvidia-cap238"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:239 => /dev/nvidia-caps/nvidia-cap239"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:240 => /dev/nvidia-caps/nvidia-cap240"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:241 => /dev/nvidia-caps/nvidia-cap241"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:242 => /dev/nvidia-caps/nvidia-cap242"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:243 => /dev/nvidia-caps/nvidia-cap243"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:244 => /dev/nvidia-caps/nvidia-cap244"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:245 => /dev/nvidia-caps/nvidia-cap245"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:246 => /dev/nvidia-caps/nvidia-cap246"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:247 => /dev/nvidia-caps/nvidia-cap247"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:248 => /dev/nvidia-caps/nvidia-cap248"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:249 => /dev/nvidia-caps/nvidia-cap249"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:250 => /dev/nvidia-caps/nvidia-cap250"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:251 => /dev/nvidia-caps/nvidia-cap251"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:252 => /dev/nvidia-caps/nvidia-cap252"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:253 => /dev/nvidia-caps/nvidia-cap253"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:254 => /dev/nvidia-caps/nvidia-cap254"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:255 => /dev/nvidia-caps/nvidia-cap255"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:256 => /dev/nvidia-caps/nvidia-cap256"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:257 => /dev/nvidia-caps/nvidia-cap257"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:258 => /dev/nvidia-caps/nvidia-cap258"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:259 => /dev/nvidia-caps/nvidia-cap259"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:260 => /dev/nvidia-caps/nvidia-cap260"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:261 => /dev/nvidia-caps/nvidia-cap261"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:262 => /dev/nvidia-caps/nvidia-cap262"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:263 => /dev/nvidia-caps/nvidia-cap263"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:264 => /dev/nvidia-caps/nvidia-cap264"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:265 => /dev/nvidia-caps/nvidia-cap265"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:266 => /dev/nvidia-caps/nvidia-cap266"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:267 => /dev/nvidia-caps/nvidia-cap267"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:268 => /dev/nvidia-caps/nvidia-cap268"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:269 => /dev/nvidia-caps/nvidia-cap269"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:270 => /dev/nvidia-caps/nvidia-cap270"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:271 => /dev/nvidia-caps/nvidia-cap271"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/driver-validation] time="2024-11-02T01:30:19Z" level=info msg="Creating link /host-dev-char/238:272 => /dev/nvidia-caps/nvidia-cap272"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] IS_HOST_DRIVER=true
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] NVIDIA_DRIVER_ROOT=/
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] DRIVER_ROOT_CTR_PATH=/host
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] NVIDIA_DEV_ROOT=/
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] DEV_ROOT_CTR_PATH=/host
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Parsing arguments"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Starting nvidia-toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Verifying Flags"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg=Initializing
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing NVIDIA container toolkit to '/usr/local/nvidia/toolkit'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Removing existing NVIDIA container toolkit installation"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Creating directory '/usr/local/nvidia/toolkit'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Creating directory '/usr/local/nvidia/toolkit/.config/nvidia-container-runtime'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] nvidia-container-runtime.modes.csv]
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr]       mount-spec-path = "/etc/nvidia-container-runtime/host-files-for-container.d"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] 
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] [nvidia-container-runtime-hook]
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr]   path = "/usr/local/nvidia/toolkit/nvidia-container-runtime-hook"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr]   skip-mode-detection = true
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] 
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] [nvidia-ctk]
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr]   path = "/usr/local/nvidia/toolkit/nvidia-ctk"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Resolved link: '/usr/lib/x86_64-linux-gnu/libnvidia-container.so.1' => '/usr/lib/x86_64-linux-gnu/libnvidia-container.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/lib/x86_64-linux-gnu/libnvidia-container.so.1.13.5' to '/usr/local/nvidia/toolkit/libnvidia-container.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/lib/x86_64-linux-gnu/libnvidia-container.so.1.13.5' to '/usr/local/nvidia/toolkit/libnvidia-container.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Creating symlink '/usr/local/nvidia/toolkit/libnvidia-container.so.1' -> 'libnvidia-container.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Finding library libnvidia-container-go.so.1 (root=)"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Checking library candidate '/usr/lib64/libnvidia-container-go.so.1'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-container-go.so.1': error resolving link '/usr/lib64/libnvidia-container-go.so.1': lstat /usr/lib64/libnvidia-container-go.so.1: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Checking library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Resolved link: '/usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1' => '/usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1.13.5' to '/usr/local/nvidia/toolkit/libnvidia-container-go.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1.13.5' to '/usr/local/nvidia/toolkit/libnvidia-container-go.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Creating symlink '/usr/local/nvidia/toolkit/libnvidia-container-go.so.1' -> 'libnvidia-container-go.so.1.13.5'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing executable '/usr/bin/nvidia-container-runtime' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/bin/nvidia-container-runtime' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing executable '/usr/bin/nvidia-container-runtime.cdi' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/bin/nvidia-container-runtime.cdi' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.cdi.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.cdi.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime.cdi'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing executable '/usr/bin/nvidia-container-runtime.legacy' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/bin/nvidia-container-runtime.legacy' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.legacy.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.legacy.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime.legacy'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Finding library libnvidia-ml.so (root=/)"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Checking library candidate '/usr/lib64/libnvidia-ml.so'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-ml.so': error resolving link '/usr/lib64/libnvidia-ml.so': lstat /usr/lib64/libnvidia-ml.so: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Checking library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/x86_64-linux-gnu/libnvidia-ml.so: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Checking library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/aarch64-linux-gnu: no such file or directory"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=warning msg="Error finding library path for root /: error locating NVIDIA management library: error locating library 'libnvidia-ml.so'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Using library root "
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing executable 'nvidia-container-runtime.experimental' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing 'nvidia-container-runtime.experimental' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing NVIDIA container CLI from '/usr/bin/nvidia-container-cli'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing executable '/usr/bin/nvidia-container-cli' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/bin/nvidia-container-cli' to '/usr/local/nvidia/toolkit/nvidia-container-cli.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-cli.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-cli'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing NVIDIA container runtime hook from '/usr/bin/nvidia-container-runtime-hook'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing executable '/usr/bin/nvidia-container-runtime-hook' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/bin/nvidia-container-runtime-hook' to '/usr/local/nvidia/toolkit/nvidia-container-runtime-hook.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime-hook.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime-hook'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Creating symlink '/usr/local/nvidia/toolkit/nvidia-container-toolkit' -> 'nvidia-container-runtime-hook'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing executable '/usr/bin/nvidia-ctk' to /usr/local/nvidia/toolkit"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing '/usr/bin/nvidia-ctk' to '/usr/local/nvidia/toolkit/nvidia-ctk.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-ctk.real'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-ctk'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Installing NVIDIA container toolkit config '/usr/local/nvidia/toolkit/.config/nvidia-container-runtime/config.toml'"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping unset option: nvidia-container-runtime.runtimes"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping unset option: nvidia-container-cli.debug"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping unset option: nvidia-container-runtime.debug"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping unset option: nvidia-container-runtime.log-level"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping unset option: nvidia-container-runtime.mode"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Skipping unset option: nvidia-container-runtime.modes.cdi.annotation-prefixes"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Setting up runtime"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Parsing arguments: [/usr/local/nvidia/toolkit]"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Successfully parsed arguments"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Starting 'setup' for containerd"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Loading config: /runtime/config-dir/config.toml"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Successfully loaded config"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Flushing config to /runtime/config-dir/config.toml"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Sending SIGHUP signal to containerd"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Successfully signaled containerd"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Completed 'setup' for containerd"
-[pod/nvidia-container-toolkit-daemonset-6h6m7/nvidia-container-toolkit-ctr] time="2024-11-02T01:30:33Z" level=info msg="Waiting for signal"
-
-=== DCGM Exporter Logs ===
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-[pod/nvidia-dcgm-exporter-9ch9d/toolkit-validation] waiting for nvidia container stack to be setup
-Error from server (BadRequest): container "nvidia-dcgm-exporter" in pod "nvidia-dcgm-exporter-9ch9d" is waiting to start: PodInitializing
-
-=== Kind Container GPU Setup ===
-=== nvidia-smi ===
-Sat Nov  2 01:33:15 2024       
-+---------------------------------------------------------------------------------------+
-| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
-|-----------------------------------------+----------------------+----------------------+
-| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
-|                                         |                      |               MIG M. |
-|=========================================+======================+======================|
-|   0  Tesla V100-PCIE-16GB           Off | 00000000:04:01.0 Off |                    0 |
-| N/A   37C    P0              25W / 250W |      0MiB / 16384MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-|   1  Tesla V100-PCIE-16GB           Off | 00000000:04:02.0 Off |                    0 |
-| N/A   37C    P0              27W / 250W |      0MiB / 16384MiB |      0%      Default |
-|                                         |                      |                  N/A |
-+-----------------------------------------+----------------------+----------------------+
-                                                                                         
-+---------------------------------------------------------------------------------------+
-| Processes:                                                                            |
-|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
-|        ID   ID                                                             Usage      |
-|=======================================================================================|
-|  No running processes found                                                           |
-+---------------------------------------------------------------------------------------+
+=== Unique Error Messages ===
+Nov 02 01:52:16 kind-control-plane containerd[6293]: time="2024-11-02T01:52:16.135884617Z" level=warning msg="cleaning up after shim disconnected" id=e7ad82ac72a26c3119b1fcd89daeaeb9e10f513c8fdbff41d04b6f5121e35403 namespace=k8s.io
+Nov 02 01:52:16 kind-control-plane containerd[6293]: time="2024-11-02T01:52:16.669918073Z" level=error msg="RemoveContainer for \"c5c2a53984f257341e66169f55cc9b4fa0794feaecf7228ffdffce80589f6e6c\" failed" error="failed to set removing state for container \"c5c2a53984f257341e66169f55cc9b4fa0794feaecf7228ffdffce80589f6e6c\": container is already in removing state"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap1 /host-dev-char/238:1: file exists"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap2 /host-dev-char/238:2: file exists"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm /host-dev-char/235:0: file exists"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm-tools /host-dev-char/235:1: file exists"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia0 /host-dev-char/195:0: file exists"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidia1 /host-dev-char/195:1: file exists"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/driver-validation] time="2024-11-02T01:48:52Z" level=warning msg="Could not create symlink: symlink /dev/nvidiactl /host-dev-char/195:255: file exists"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/aarch64-linux-gnu: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/x86_64-linux-gnu/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-container-go.so.1': error resolving link '/usr/lib64/libnvidia-container-go.so.1': lstat /usr/lib64/libnvidia-container-go.so.1: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-container.so.1': error resolving link '/usr/lib64/libnvidia-container.so.1': lstat /usr/lib64/libnvidia-container.so.1: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-ml.so': error resolving link '/usr/lib64/libnvidia-ml.so': lstat /usr/lib64/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=warning msg="Error finding library path for root /: error locating NVIDIA management library: error locating library 'libnvidia-ml.so'"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap1 /host-dev-char/238:1: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap10 /host-dev-char/238:10: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap100 /host-dev-char/238:100: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap101 /host-dev-char/238:101: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap102 /host-dev-char/238:102: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap103 /host-dev-char/238:103: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap104 /host-dev-char/238:104: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap105 /host-dev-char/238:105: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap106 /host-dev-char/238:106: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap107 /host-dev-char/238:107: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap108 /host-dev-char/238:108: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap109 /host-dev-char/238:109: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap11 /host-dev-char/238:11: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap110 /host-dev-char/238:110: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap111 /host-dev-char/238:111: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap112 /host-dev-char/238:112: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap113 /host-dev-char/238:113: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap114 /host-dev-char/238:114: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap115 /host-dev-char/238:115: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap116 /host-dev-char/238:116: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap117 /host-dev-char/238:117: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap118 /host-dev-char/238:118: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap119 /host-dev-char/238:119: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap12 /host-dev-char/238:12: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap120 /host-dev-char/238:120: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap121 /host-dev-char/238:121: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap122 /host-dev-char/238:122: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap123 /host-dev-char/238:123: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap124 /host-dev-char/238:124: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap125 /host-dev-char/238:125: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap126 /host-dev-char/238:126: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap127 /host-dev-char/238:127: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap128 /host-dev-char/238:128: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap129 /host-dev-char/238:129: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap13 /host-dev-char/238:13: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap130 /host-dev-char/238:130: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap131 /host-dev-char/238:131: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap132 /host-dev-char/238:132: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap133 /host-dev-char/238:133: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap134 /host-dev-char/238:134: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap135 /host-dev-char/238:135: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap136 /host-dev-char/238:136: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap137 /host-dev-char/238:137: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap138 /host-dev-char/238:138: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap139 /host-dev-char/238:139: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap14 /host-dev-char/238:14: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap140 /host-dev-char/238:140: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap141 /host-dev-char/238:141: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap142 /host-dev-char/238:142: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap143 /host-dev-char/238:143: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap144 /host-dev-char/238:144: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap145 /host-dev-char/238:145: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap146 /host-dev-char/238:146: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap147 /host-dev-char/238:147: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap148 /host-dev-char/238:148: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap149 /host-dev-char/238:149: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap15 /host-dev-char/238:15: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap150 /host-dev-char/238:150: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap151 /host-dev-char/238:151: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap152 /host-dev-char/238:152: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap153 /host-dev-char/238:153: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap154 /host-dev-char/238:154: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap155 /host-dev-char/238:155: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap156 /host-dev-char/238:156: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap157 /host-dev-char/238:157: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap158 /host-dev-char/238:158: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap159 /host-dev-char/238:159: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap16 /host-dev-char/238:16: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap160 /host-dev-char/238:160: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap161 /host-dev-char/238:161: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap162 /host-dev-char/238:162: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap163 /host-dev-char/238:163: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap164 /host-dev-char/238:164: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap165 /host-dev-char/238:165: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap166 /host-dev-char/238:166: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap167 /host-dev-char/238:167: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap168 /host-dev-char/238:168: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap169 /host-dev-char/238:169: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap17 /host-dev-char/238:17: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap170 /host-dev-char/238:170: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap171 /host-dev-char/238:171: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap172 /host-dev-char/238:172: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap173 /host-dev-char/238:173: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap174 /host-dev-char/238:174: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap175 /host-dev-char/238:175: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap176 /host-dev-char/238:176: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap177 /host-dev-char/238:177: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap178 /host-dev-char/238:178: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap179 /host-dev-char/238:179: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap18 /host-dev-char/238:18: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap180 /host-dev-char/238:180: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap181 /host-dev-char/238:181: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap182 /host-dev-char/238:182: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap183 /host-dev-char/238:183: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap184 /host-dev-char/238:184: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap185 /host-dev-char/238:185: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap186 /host-dev-char/238:186: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap187 /host-dev-char/238:187: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap188 /host-dev-char/238:188: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap189 /host-dev-char/238:189: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap19 /host-dev-char/238:19: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap190 /host-dev-char/238:190: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap191 /host-dev-char/238:191: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap192 /host-dev-char/238:192: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap193 /host-dev-char/238:193: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap194 /host-dev-char/238:194: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap195 /host-dev-char/238:195: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap196 /host-dev-char/238:196: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap197 /host-dev-char/238:197: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap198 /host-dev-char/238:198: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap199 /host-dev-char/238:199: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap2 /host-dev-char/238:2: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap20 /host-dev-char/238:20: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap200 /host-dev-char/238:200: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap201 /host-dev-char/238:201: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap202 /host-dev-char/238:202: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap203 /host-dev-char/238:203: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap204 /host-dev-char/238:204: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap205 /host-dev-char/238:205: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap206 /host-dev-char/238:206: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap207 /host-dev-char/238:207: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap208 /host-dev-char/238:208: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap209 /host-dev-char/238:209: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap21 /host-dev-char/238:21: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap210 /host-dev-char/238:210: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap211 /host-dev-char/238:211: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap212 /host-dev-char/238:212: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap213 /host-dev-char/238:213: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap214 /host-dev-char/238:214: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap215 /host-dev-char/238:215: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap216 /host-dev-char/238:216: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap217 /host-dev-char/238:217: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap218 /host-dev-char/238:218: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap219 /host-dev-char/238:219: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap22 /host-dev-char/238:22: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap220 /host-dev-char/238:220: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap221 /host-dev-char/238:221: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap222 /host-dev-char/238:222: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap223 /host-dev-char/238:223: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap224 /host-dev-char/238:224: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap225 /host-dev-char/238:225: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap226 /host-dev-char/238:226: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap227 /host-dev-char/238:227: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap228 /host-dev-char/238:228: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap229 /host-dev-char/238:229: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap23 /host-dev-char/238:23: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap230 /host-dev-char/238:230: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap231 /host-dev-char/238:231: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap232 /host-dev-char/238:232: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap233 /host-dev-char/238:233: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap234 /host-dev-char/238:234: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap235 /host-dev-char/238:235: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap236 /host-dev-char/238:236: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap237 /host-dev-char/238:237: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap238 /host-dev-char/238:238: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap239 /host-dev-char/238:239: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap24 /host-dev-char/238:24: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap240 /host-dev-char/238:240: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap241 /host-dev-char/238:241: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap242 /host-dev-char/238:242: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap243 /host-dev-char/238:243: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap244 /host-dev-char/238:244: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap245 /host-dev-char/238:245: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap246 /host-dev-char/238:246: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap247 /host-dev-char/238:247: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap248 /host-dev-char/238:248: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap249 /host-dev-char/238:249: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap25 /host-dev-char/238:25: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap250 /host-dev-char/238:250: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap251 /host-dev-char/238:251: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap252 /host-dev-char/238:252: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap253 /host-dev-char/238:253: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap254 /host-dev-char/238:254: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap255 /host-dev-char/238:255: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap256 /host-dev-char/238:256: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap257 /host-dev-char/238:257: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap258 /host-dev-char/238:258: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap259 /host-dev-char/238:259: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap26 /host-dev-char/238:26: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap260 /host-dev-char/238:260: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap261 /host-dev-char/238:261: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap262 /host-dev-char/238:262: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap263 /host-dev-char/238:263: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap264 /host-dev-char/238:264: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap265 /host-dev-char/238:265: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap266 /host-dev-char/238:266: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap267 /host-dev-char/238:267: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap268 /host-dev-char/238:268: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap269 /host-dev-char/238:269: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap27 /host-dev-char/238:27: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap270 /host-dev-char/238:270: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap271 /host-dev-char/238:271: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap272 /host-dev-char/238:272: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap28 /host-dev-char/238:28: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap29 /host-dev-char/238:29: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap3 /host-dev-char/238:3: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap30 /host-dev-char/238:30: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap31 /host-dev-char/238:31: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap32 /host-dev-char/238:32: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap33 /host-dev-char/238:33: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap34 /host-dev-char/238:34: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap35 /host-dev-char/238:35: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap36 /host-dev-char/238:36: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap37 /host-dev-char/238:37: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap38 /host-dev-char/238:38: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap39 /host-dev-char/238:39: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap4 /host-dev-char/238:4: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap40 /host-dev-char/238:40: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap41 /host-dev-char/238:41: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap42 /host-dev-char/238:42: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap43 /host-dev-char/238:43: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap44 /host-dev-char/238:44: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap45 /host-dev-char/238:45: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap46 /host-dev-char/238:46: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap47 /host-dev-char/238:47: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap48 /host-dev-char/238:48: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap49 /host-dev-char/238:49: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap5 /host-dev-char/238:5: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap50 /host-dev-char/238:50: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap51 /host-dev-char/238:51: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap52 /host-dev-char/238:52: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap53 /host-dev-char/238:53: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap54 /host-dev-char/238:54: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap55 /host-dev-char/238:55: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap56 /host-dev-char/238:56: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap57 /host-dev-char/238:57: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap58 /host-dev-char/238:58: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap59 /host-dev-char/238:59: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap6 /host-dev-char/238:6: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap60 /host-dev-char/238:60: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap61 /host-dev-char/238:61: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap62 /host-dev-char/238:62: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap63 /host-dev-char/238:63: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap64 /host-dev-char/238:64: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap65 /host-dev-char/238:65: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap66 /host-dev-char/238:66: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap67 /host-dev-char/238:67: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap68 /host-dev-char/238:68: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap69 /host-dev-char/238:69: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap7 /host-dev-char/238:7: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap70 /host-dev-char/238:70: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap71 /host-dev-char/238:71: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap72 /host-dev-char/238:72: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap73 /host-dev-char/238:73: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap74 /host-dev-char/238:74: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap75 /host-dev-char/238:75: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap76 /host-dev-char/238:76: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap77 /host-dev-char/238:77: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap78 /host-dev-char/238:78: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap79 /host-dev-char/238:79: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap8 /host-dev-char/238:8: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap80 /host-dev-char/238:80: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap81 /host-dev-char/238:81: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap82 /host-dev-char/238:82: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap83 /host-dev-char/238:83: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap84 /host-dev-char/238:84: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap85 /host-dev-char/238:85: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap86 /host-dev-char/238:86: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap87 /host-dev-char/238:87: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap88 /host-dev-char/238:88: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap89 /host-dev-char/238:89: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap9 /host-dev-char/238:9: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap90 /host-dev-char/238:90: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap91 /host-dev-char/238:91: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap92 /host-dev-char/238:92: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap93 /host-dev-char/238:93: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap94 /host-dev-char/238:94: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap95 /host-dev-char/238:95: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap96 /host-dev-char/238:96: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap97 /host-dev-char/238:97: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap98 /host-dev-char/238:98: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-caps/nvidia-cap99 /host-dev-char/238:99: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-modeset /host-dev-char/195:254: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm /host-dev-char/235:0: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia-uvm-tools /host-dev-char/235:1: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia0 /host-dev-char/195:0: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidia1 /host-dev-char/195:1: file exists"
+[pod/nvidia-operator-validator-7zqkr/driver-validation] time="2024-11-02T01:49:18Z" level=warning msg="Could not create symlink: symlink /dev/nvidiactl /host-dev-char/195:255: file exists"
+[pod/nvidia-operator-validator-7zqkr/toolkit-validation] time="2024-11-02T01:52:16Z" level=info msg="Error: error validating toolkit installation: exit status 12"
 
 === NVIDIA Libraries ===
-lrwxrwxrwx 1 root root        24 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so -> libnvidia-allocator.so.1
-lrwxrwxrwx 1 root root        33 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.1 -> libnvidia-allocator.so.535.183.01
--rwxr-xr-x 1 root root    160552 Sep 29  2023 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.535.113.01
--rwxr-xr-x 1 root root    160552 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.535.183.01
-lrwxrwxrwx 1 root root        18 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-api.so -> libnvidia-api.so.1
--rwxr-xr-x 1 root root    628840 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-api.so.1
-lrwxrwxrwx 1 root root        27 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so -> libnvidia-cfg.so.535.183.01
-lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.1 -> libnvidia-cfg.so.535.183.01
--rwxr-xr-x 1 root root    270840 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.535.183.01
-lrwxrwxrwx 1 root root        32 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so -> libnvidia-container-go.so.1.15.0
-lrwxrwxrwx 1 root root        32 Apr 15  2024 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1 -> libnvidia-container-go.so.1.15.0
--rw-r--r-- 1 root root   2959416 Jul 13  2023 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1.13.5
--rwxr-xr-x 1 root root   2959448 Apr 15  2024 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1.15.0
-lrwxrwxrwx 1 root root        29 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-container.so -> libnvidia-container.so.1.15.0
-lrwxrwxrwx 1 root root        29 Apr 15  2024 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1 -> libnvidia-container.so.1.15.0
--rwxr-xr-x 1 root root    195856 Jul 13  2023 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1.13.5
--rwxr-xr-x 1 root root    199952 Apr 15  2024 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1.15.0
-lrwxrwxrwx 1 root root        22 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so -> libnvidia-egl-gbm.so.1
-lrwxrwxrwx 1 root root        26 Nov  5  2023 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1 -> libnvidia-egl-gbm.so.1.1.0
--rwxr-xr-x 1 root root     22768 May 12 19:31 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1.1.0
-lrwxrwxrwx 1 root root        31 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so -> libnvidia-eglcore.so.535.104.12
--rwxr-xr-x 1 root root  43903080 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535.104.12
--rwxr-xr-x 1 root root  43907464 May 12 20:00 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535.183.01
-lrwxrwxrwx 1 root root        21 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so -> libnvidia-encode.so.1
-lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1 -> libnvidia-encode.so.535.183.01
--rwxr-xr-x 1 root root    248480 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.535.183.01
-lrwxrwxrwx 1 root root        18 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so -> libnvidia-fbc.so.1
-lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.1 -> libnvidia-fbc.so.535.183.01
--rwxr-xr-x 1 root root    133920 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so -> libnvidia-glcore.so.535.183.01
--rwxr-xr-x 1 root root  45946464 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535.104.12
--rwxr-xr-x 1 root root  45954944 May 12 20:10 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535.183.01
-lrwxrwxrwx 1 root root        28 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so -> libnvidia-glsi.so.535.104.12
--rwxr-xr-x 1 root root    656472 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.104.12
--rwxr-xr-x 1 root root    656472 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.183.01
-lrwxrwxrwx 1 root root        33 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so -> libnvidia-glvkspirv.so.535.104.12
--rwxr-xr-x 1 root root  40774960 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.104.12
--rwxr-xr-x 1 root root  40783152 May 12 20:16 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.183.01
+
+	libnvidia-glsi.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.104.12
+	libnvidia-glsi.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.183.01
+	libnvidia-glvkspirv.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so
+	libnvidia-glvkspirv.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.104.12
+	libnvidia-glvkspirv.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.183.01
+	libnvidia-ml.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+--
 -rwxr-xr-x 1 root root   1942744 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
 -rwxr-xr-x 1 root root   1942744 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
 -rwxr-xr-x 1 root root   1942744 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535.104.12
-lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1 -> libnvidia-ngx.so.535.183.01
 -rwxr-xr-x 1 root root   3322680 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.104.12
 -rwxr-xr-x 1 root root   4553912 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.183.01
-lrwxrwxrwx 1 root root        28 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so -> libnvidia-nvvm.so.535.183.01
-lrwxrwxrwx 1 root root        28 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4 -> libnvidia-nvvm.so.535.183.01
--rwxr-xr-x 1 root root  86140736 May 12 20:24 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.535.183.01
-lrwxrwxrwx 1 root root        21 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so -> libnvidia-opencl.so.1
-lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.1 -> libnvidia-opencl.so.535.183.01
--rwxr-xr-x 1 root root  24290072 May 12 19:53 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.535.183.01
-lrwxrwxrwx 1 root root        26 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so -> libnvidia-opticalflow.so.1
-lrwxrwxrwx 1 root root        35 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.1 -> libnvidia-opticalflow.so.535.183.01
--rwxr-xr-x 1 root root     67704 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.535.183.01
-lrwxrwxrwx 1 root root        39 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so -> libnvidia-pkcs11-openssl3.so.535.183.01
+=== GPU Feature Discovery Logs ===
+[pod/gpu-feature-discovery-b2dq8/toolkit-validation] waiting for nvidia container stack to be setup
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Checking library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so'"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Checking library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so'"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Checking library candidate '/usr/lib64/libnvidia-ml.so'"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Finding library libnvidia-ml.so (root=/)"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installed '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installed wrapper '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental'"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installing 'nvidia-container-runtime.experimental' to '/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental.real'"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Installing executable 'nvidia-container-runtime.experimental' to /usr/local/nvidia/toolkit"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/aarch64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/aarch64-linux-gnu: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': error resolving link '/usr/lib/x86_64-linux-gnu/libnvidia-ml.so': lstat /usr/lib/x86_64-linux-gnu/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Skipping library candidate '/usr/lib64/libnvidia-ml.so': error resolving link '/usr/lib64/libnvidia-ml.so': lstat /usr/lib64/libnvidia-ml.so: no such file or directory"
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=info msg="Using library root "
+[pod/nvidia-container-toolkit-daemonset-lgrbk/nvidia-container-toolkit-ctr] time="2024-11-02T01:49:04Z" level=warning msg="Error finding library path for root /: error locating NVIDIA management library: error locating library 'libnvidia-ml.so'"
+[pod/nvidia-operator-validator-7zqkr/toolkit-validation] NVIDIA-SMI couldn't find libnvidia-ml.so library in your system. Please make sure that the NVIDIA Display Driver is properly installed and present in your system.
+[pod/nvidia-operator-validator-7zqkr/toolkit-validation] Please also try adding directory that contains libnvidia-ml.so to your system PATH.
+[pod/nvidia-operator-validator-7zqkr/toolkit-validation] time="2024-11-02T01:52:16Z" level=info msg="Error: error validating toolkit installation: exit status 12"
+[pod/nvidia-operator-validator-7zqkr/toolkit-validation] toolkit is not ready
+lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
+lrwxrwxrwx 1 root root        26 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
+lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1 -> libnvidia-ngx.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
+--
+
+	libnvidia-tls.so (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so
+	libnvidia-tls.so.535.104.12 (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.104.12
+	libnvidia-tls.so.535.183.01 (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.183.01
+-rw-r--r-- 1 root root   2959416 Jul 13  2023 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1.13.5
 -rwxr-xr-x 1 root root     10176 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so -> libnvidia-pkcs11.so.535.183.01
 -rwxr-xr-x 1 root root     10328 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so.535.183.01
-lrwxrwxrwx 1 root root        29 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so -> libnvidia-ptxjitcompiler.so.1
-lrwxrwxrwx 1 root root        38 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.1 -> libnvidia-ptxjitcompiler.so.535.183.01
+-rwxr-xr-x 1 root root     18632 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.183.01
+-rwxr-xr-x 1 root root     18632 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.104.12
+-rwxr-xr-x 1 root root     22768 May 12 19:31 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1.1.0
+-rwxr-xr-x 1 root root     67704 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.535.183.01
+-rwxr-xr-x 1 root root    133920 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.535.183.01
+-rwxr-xr-x 1 root root    160552 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.535.183.01
+-rwxr-xr-x 1 root root    160552 Sep 29  2023 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.535.113.01
+-rwxr-xr-x 1 root root    195856 Jul 13  2023 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1.13.5
+-rwxr-xr-x 1 root root    199952 Apr 15  2024 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1.15.0
+-rwxr-xr-x 1 root root    248480 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.535.183.01
+-rwxr-xr-x 1 root root    270840 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.535.183.01
+-rwxr-xr-x 1 root root    628840 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-api.so.1
+-rwxr-xr-x 1 root root    656472 May 12 19:29 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.183.01
+-rwxr-xr-x 1 root root    656472 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.104.12
+-rwxr-xr-x 1 root root   1942744 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+-rwxr-xr-x 1 root root   1942744 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+-rwxr-xr-x 1 root root   1942744 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01
+-rwxr-xr-x 1 root root   2959448 Apr 15  2024 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1.15.0
+-rwxr-xr-x 1 root root   3322680 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.104.12
+-rwxr-xr-x 1 root root   4553912 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.183.01
 -rwxr-xr-x 1 root root  23357184 May 12 20:00 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so -> libnvidia-rtcore.so.535.183.01
+-rwxr-xr-x 1 root root  24290072 May 12 19:53 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.535.183.01
+-rwxr-xr-x 1 root root  40774960 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.104.12
+-rwxr-xr-x 1 root root  40783152 May 12 20:16 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.183.01
+-rwxr-xr-x 1 root root  43903080 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535.104.12
+-rwxr-xr-x 1 root root  43907464 May 12 20:00 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535.183.01
+-rwxr-xr-x 1 root root  45946464 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535.104.12
+-rwxr-xr-x 1 root root  45954944 May 12 20:10 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535.183.01
+-rwxr-xr-x 1 root root  86140736 May 12 20:24 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.535.183.01
 -rwxr-xr-x 1 root root 118931952 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535.104.12
 -rwxr-xr-x 1 root root 118952432 May 12 20:29 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 01:28 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so -> libnvidia-tls.so.535.104.12
--rwxr-xr-x 1 root root     18632 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.104.12
--rwxr-xr-x 1 root root     18632 May 12 19:28 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.183.01
-
 === ldconfig Cache ===
-	libnvidia-tls.so.535.183.01 (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.183.01
-	libnvidia-tls.so.535.104.12 (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535.104.12
-	libnvidia-tls.so (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so
-	libnvidia-rtcore.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535.183.01
-	libnvidia-rtcore.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535.104.12
-	libnvidia-rtcore.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so
-	libnvidia-ptxjitcompiler.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.1
-	libnvidia-ptxjitcompiler.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so
-	libnvidia-pkcs11.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so.535.183.01
-	libnvidia-pkcs11.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so
-	libnvidia-pkcs11-openssl3.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.535.183.01
-	libnvidia-pkcs11-openssl3.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so
-	libnvidia-opticalflow.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.1
-	libnvidia-opticalflow.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so
-	libnvidia-opencl.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.1
-	libnvidia-opencl.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so
-	libnvidia-nvvm.so.4 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4
-	libnvidia-nvvm.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so
-	libnvidia-ngx.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1
-	libnvidia-ngx.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so
-	libnvidia-ml.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
-	libnvidia-glvkspirv.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.183.01
-	libnvidia-glvkspirv.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535.104.12
-	libnvidia-glvkspirv.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so
-	libnvidia-glsi.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.183.01
-	libnvidia-glsi.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.104.12
-	libnvidia-glsi.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so
-	libnvidia-glcore.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535.183.01
-	libnvidia-glcore.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535.104.12
-	libnvidia-glcore.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so
-	libnvidia-fbc.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.1
-	libnvidia-fbc.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so
-	libnvidia-encode.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1
-	libnvidia-encode.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-encode.so
-	libnvidia-eglcore.so.535.183.01 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535.183.01
-	libnvidia-eglcore.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535.104.12
-	libnvidia-eglcore.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so
-	libnvidia-egl-gbm.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1
-	libnvidia-egl-gbm.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so
-	libnvidia-container.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1
-	libnvidia-container.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-container.so
-	libnvidia-container-go.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1
-	libnvidia-container-go.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so
-	libnvidia-cfg.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.1
-	libnvidia-cfg.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so
-	libnvidia-api.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-api.so.1
-	libnvidia-api.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-api.so
-	libnvidia-allocator.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.1
-	libnvidia-allocator.so (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so
+lrwxrwxrwx 1 root root        18 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so -> libnvidia-fbc.so.1
+lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so -> libnvidia-cfg.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so -> libnvidia-tls.so.535
+lrwxrwxrwx 1 root root        21 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so -> libnvidia-encode.so.1
+lrwxrwxrwx 1 root root        21 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so -> libnvidia-glsi.so.535
+lrwxrwxrwx 1 root root        21 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so -> libnvidia-nvvm.so.535
+lrwxrwxrwx 1 root root        22 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so -> libnvidia-egl-gbm.so.1
+lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so -> libnvidia-glcore.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so -> libnvidia-opencl.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so -> libnvidia-pkcs11.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so -> libnvidia-rtcore.so.535
+lrwxrwxrwx 1 root root        24 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container.so -> libnvidia-container.so.1
+lrwxrwxrwx 1 root root        24 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so -> libnvidia-eglcore.so.535
+lrwxrwxrwx 1 root root        26 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so -> libnvidia-opticalflow.so.1
+lrwxrwxrwx 1 root root        26 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so -> libnvidia-glvkspirv.so.535
+lrwxrwxrwx 1 root root        26 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
+lrwxrwxrwx 1 root root        26 Nov  5  2023 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1 -> libnvidia-egl-gbm.so.1.1.0
+lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.1 -> libnvidia-cfg.so.535.183.01
+lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.1 -> libnvidia-fbc.so.535.183.01
+lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1 -> libnvidia-ngx.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.535 -> libnvidia-cfg.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so -> libnvidia-container-go.so.1
+lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.535 -> libnvidia-fbc.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
+lrwxrwxrwx 1 root root        27 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535 -> libnvidia-tls.so.535.104.12
+lrwxrwxrwx 1 root root        28 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4 -> libnvidia-nvvm.so.535.183.01
+lrwxrwxrwx 1 root root        28 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535 -> libnvidia-glsi.so.535.104.12
+lrwxrwxrwx 1 root root        28 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.535 -> libnvidia-nvvm.so.535.183.01
+lrwxrwxrwx 1 root root        29 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so -> libnvidia-ptxjitcompiler.so.1
+lrwxrwxrwx 1 root root        29 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1 -> libnvidia-container.so.1.15.0
+lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1 -> libnvidia-encode.so.535.183.01
+lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.1 -> libnvidia-opencl.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.535 -> libnvidia-encode.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535 -> libnvidia-glcore.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.535 -> libnvidia-opencl.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so.535 -> libnvidia-pkcs11.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535 -> libnvidia-rtcore.so.535.183.01
+lrwxrwxrwx 1 root root        31 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535 -> libnvidia-eglcore.so.535.104.12
+lrwxrwxrwx 1 root root        32 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1 -> libnvidia-container-go.so.1.15.0
+lrwxrwxrwx 1 root root        32 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so -> libnvidia-pkcs11-openssl3.so.535
+lrwxrwxrwx 1 root root        33 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535 -> libnvidia-glvkspirv.so.535.104.12
+lrwxrwxrwx 1 root root        35 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.1 -> libnvidia-opticalflow.so.535.183.01
+lrwxrwxrwx 1 root root        35 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.535 -> libnvidia-opticalflow.so.535.183.01
+lrwxrwxrwx 1 root root        38 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.1 -> libnvidia-ptxjitcompiler.so.535.183.01
+lrwxrwxrwx 1 root root        38 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535 -> libnvidia-ptxjitcompiler.so.535.183.01
+lrwxrwxrwx 1 root root        39 Nov  2 01:47 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.535 -> libnvidia-pkcs11-openssl3.so.535.183.01
 
-=== Container Runtime Config ===
-disable-require = false
-debug = "/var/log/nvidia-container-runtime-debug.log"
-debug-file = "/var/log/nvidia-container-runtime-debug.log"
-verbosity = "debug"
-ldconfig = "@/sbin/ldconfig.real"
-
-[nvidia-container-cli]
-debug = "/var/log/nvidia-container-cli-debug.log"
-debug-file = "/var/log/nvidia-container-cli-debug.log"
-verbosity = "debug"
-root = "/usr/lib/x86_64-linux-gnu"
-path = ["/usr/lib/x86_64-linux-gnu", "/usr/local/nvidia/lib64", "/usr/bin"]
-
-[nvidia-container-runtime]
-debug = "/var/log/nvidia-container-runtime.log"
-debug-file = "/var/log/nvidia-container-runtime.log"
-verbosity = "debug"
-
-=== Containerd Config ===
-version = 2
-
-[plugins]
-
-  [plugins."io.containerd.grpc.v1.cri"]
-    sandbox_image = "registry.k8s.io/pause:3.9"
-
-    [plugins."io.containerd.grpc.v1.cri".containerd]
-      default_runtime_name = "nvidia"
-
-      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes]
-
+=== Containerd Config Highlights ===
         [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
           runtime_type = "io.containerd.runc.v2"
 
@@ -697,79 +461,19 @@ version = 2
           [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia-cdi.options]
             BinaryName = "/usr/local/nvidia/toolkit/nvidia-container-runtime.cdi"
 
-        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia-experimental]
-          runtime_type = "io.containerd.runc.v2"
-
-          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia-experimental.options]
-            BinaryName = "/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental"
-
-        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia-legacy]
-          runtime_type = "io.containerd.runc.v2"
-
-          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia-legacy.options]
-            BinaryName = "/usr/local/nvidia/toolkit/nvidia-container-runtime.legacy"
-
-        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
-          runtime_type = "io.containerd.runc.v2"
-
-    [plugins."io.containerd.grpc.v1.cri".registry]
-
-      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
-
-        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
-          endpoint = ["https://registry-1.docker.io"]
-
-        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."nvcr.io"]
-          endpoint = ["https://nvcr.io"]
-
-=== Containerd Status ===
-● containerd.service - containerd container runtime
-     Loaded: loaded (/etc/systemd/system/containerd.service; enabled; vendor preset: enabled)
-     Active: active (running) since Sat 2024-11-02 01:30:36 UTC; 2min 39s ago
-       Docs: https://containerd.io
-    Process: 6148 ExecStartPre=/sbin/modprobe overlay (code=exited, status=0/SUCCESS)
-   Main PID: 6149 (containerd)
-      Tasks: 249
-     Memory: 2.5G
-        CPU: 4.557s
-     CGroup: /system.slice/containerd.service
-             ├─ 299 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id f09a0b0f6bb76df8abdb32d88bee6a58e744732e1bdc49e2f1ad4ea95487d481 -address /run/containerd/containerd.sock
-             ├─ 311 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 388ed7ffaf96c4f6ef3a4c1406b594513be302e2f67900eb346ddf0a58c75c7e -address /run/containerd/containerd.sock
-             ├─ 331 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 1f3aeaf1cf91e610efc3bab1ee45ed92a90c2129baa7f62db36c15fa2e22690e -address /run/containerd/containerd.sock
-             ├─ 348 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id a963d8453d09f740b79526e62ceffdeb27f8b049d05fe76c844bb1fc4db2711b -address /run/containerd/containerd.sock
-             ├─2254 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 8a1abf9278f4ea93fb4e1ec13305f5fe2db9677fada2910a484a44e936b45759 -address /run/containerd/containerd.sock
-             ├─2255 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id e76e89de6ebd3c9e459d70faabf18ac1fbfd509fbc45f0b1a225d2d0ea592e00 -address /run/containerd/containerd.sock
-             ├─3155 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 63ca0dec7d7ce666f0e571b6442214a9edf1cd7d0c10602819293c65b7c7e9cd -address /run/containerd/containerd.sock
-             ├─3158 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 0e7394e9bdb886d812f0961e3a02cba8d555c5d681337aebd2f2187ca7c196dc -address /run/containerd/containerd.sock
-             ├─3170 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id b62c8c2d052530788263d72cbd56da4e118e46425bc28e0c06b0a2ac759c1f0f -address /run/containerd/containerd.sock
-             ├─4806 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id b8ffe3eb125be49b3fd00cc8029a6acca56b4af8b3088a70885276003b6e3f3b -address /run/containerd/containerd.sock
-             ├─4811 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 9928d6cd89e1eb63427cec00f652d5b84c0f1eb7aacff1444b12227afb6589d5 -address /run/containerd/containerd.sock
-             ├─4838 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 98b112a9664079fb6f446752fe96b0959479ea50cd38d47869b763de72a11fba -address /run/containerd/containerd.sock
-             ├─4868 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id b5d550e090956f80f52237ac39f36a1d1c106ece5e96ce772f78dcaf5a1c1ae7 -address /run/containerd/containerd.sock
-             ├─5394 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 388941d8a0a17367bdc04a7e2649cd81e7ee525ec48b14e734f2eb5ff1f6429c -address /run/containerd/containerd.sock
-             ├─6149 /usr/local/bin/containerd
-             ├─6457 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id aea51a2a2891bfbf008d561c9ba54cfcb626e89ce4b8486ad0bb145838ae24ca -address /run/containerd/containerd.sock
-             ├─6533 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 82e54b8f0ff9755874fb1d21dddbba372e91a30f14ac1c50eb16eb72f94e7642 -address /run/containerd/containerd.sock
-             ├─7111 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 81340b9cfbeb097fe056cc965297e97b829a85d2efb3db8e000a166d34b47344 -address /run/containerd/containerd.sock
-             └─7255 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 8a746c6f823409cf5c1e7b279323e6c0b61a6bb4290192573a6962ac30d5bba6 -address /run/containerd/containerd.sock
-
-Nov 02 01:32:00 kind-control-plane containerd[6149]: time="2024-11-02T01:32:00.807798375Z" level=info msg="CreateContainer within sandbox \"82e54b8f0ff9755874fb1d21dddbba372e91a30f14ac1c50eb16eb72f94e7642\" for &ContainerMetadata{Name:toolkit-validation,Attempt:4,} returns container id \"68d9497c4cd0991432c7a82fa93ac2fa8afb588ed933d866747809996447267c\""
-Nov 02 01:32:00 kind-control-plane containerd[6149]: time="2024-11-02T01:32:00.808184032Z" level=info msg="StartContainer for \"68d9497c4cd0991432c7a82fa93ac2fa8afb588ed933d866747809996447267c\""
-Nov 02 01:32:00 kind-control-plane containerd[6149]: time="2024-11-02T01:32:00.934333938Z" level=info msg="StartContainer for \"68d9497c4cd0991432c7a82fa93ac2fa8afb588ed933d866747809996447267c\" returns successfully"
-Nov 02 01:32:00 kind-control-plane containerd[6149]: time="2024-11-02T01:32:00.980040971Z" level=info msg="shim disconnected" id=68d9497c4cd0991432c7a82fa93ac2fa8afb588ed933d866747809996447267c namespace=k8s.io
-Nov 02 01:32:00 kind-control-plane containerd[6149]: time="2024-11-02T01:32:00.980114211Z" level=warning msg="cleaning up after shim disconnected" id=68d9497c4cd0991432c7a82fa93ac2fa8afb588ed933d866747809996447267c namespace=k8s.io
-Nov 02 01:32:00 kind-control-plane containerd[6149]: time="2024-11-02T01:32:00.980126679Z" level=info msg="cleaning up dead shim" namespace=k8s.io
-Nov 02 01:32:01 kind-control-plane containerd[6149]: time="2024-11-02T01:32:01.849195949Z" level=info msg="RemoveContainer for \"9064123dfcf6db793ba036533a599a3705187e97d6ede8596ab4b177ae2a0719\""
-Nov 02 01:32:01 kind-control-plane containerd[6149]: time="2024-11-02T01:32:01.849471597Z" level=info msg="RemoveContainer for \"9064123dfcf6db793ba036533a599a3705187e97d6ede8596ab4b177ae2a0719\""
-Nov 02 01:32:01 kind-control-plane containerd[6149]: time="2024-11-02T01:32:01.849580997Z" level=error msg="RemoveContainer for \"9064123dfcf6db793ba036533a599a3705187e97d6ede8596ab4b177ae2a0719\" failed" error="failed to set removing state for container \"9064123dfcf6db793ba036533a599a3705187e97d6ede8596ab4b177ae2a0719\": container is already in removing state"
-Nov 02 01:32:01 kind-control-plane containerd[6149]: time="2024-11-02T01:32:01.854283172Z" level=info msg="RemoveContainer for \"9064123dfcf6db793ba036533a599a3705187e97d6ede8596ab4b177ae2a0719\" returns successfully"
-
+=== Runtime Logs Highlights ===
 === Runtime Debug Logs ===
 === Runtime Debug Log ===
-cat: /var/log/nvidia-container-runtime-debug.log: No such file or directory
 
 === CLI Debug Log ===
-cat: /var/log/nvidia-container-cli-debug.log: No such file or directory
 
 === Runtime Log ===
-cat: /var/log/nvidia-container-runtime.log: No such file or directory
+
+=== nvidia-smi Output ===
+=== nvidia-smi ===
+Sat Nov  2 01:53:51 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+
