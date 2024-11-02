@@ -81,8 +81,8 @@ install-operators:
 		--set mig.strategy=mixed \
 		--set driver.useHostMounts=true \
 		--set toolkit.version=v1.13.5 \
-		--set toolkit.image.repository=nvcr.io/nvidia/container-toolkit \
-		--set toolkit.image.tag=v1.13.5-ubuntu20.04 \
+		--set "toolkit.image.repository=nvcr.io/nvidia/k8s/container-toolkit" \
+		--set "toolkit.image.tag=v1.13.5-ubuntu20.04" \
 		--set toolkit.env[0].name=CONTAINERD_CONFIG \
 		--set toolkit.env[0].value=/etc/containerd/config.toml \
 		--set toolkit.env[1].name=CONTAINERD_SOCKET \
