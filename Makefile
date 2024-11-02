@@ -6,6 +6,9 @@ KUBE_PROMETHEUS_VERSION := release-0.13
 .PHONY: all
 all: prerequisites cluster setup-nvidia-runtime install-operators setup-monitoring port-forward
 
+.PHONY: reinstall
+reinstall: clean cluster setup-nvidia-runtime install-operators setup-monitoring port-forward
+
 .PHONY: prerequisites
 prerequisites:
 	@echo "Installing prerequisites..."
@@ -69,19 +72,25 @@ install-operators:
 		--generate-name \
 		nvidia/gpu-operator \
 		--set driver.enabled=false \
+		--set driver.version=$(shell nvidia-smi --query-gpu=driver_version --format=csv,noheader) \
 		--set toolkit.enabled=true \
 		--set devicePlugin.enabled=true \
 		--set migManager.enabled=false \
-		--set toolkit.version=v1.14.6 \
 		--set operator.defaultRuntime=containerd \
 		--set driver.rdma.enabled=false \
 		--set mig.strategy=mixed \
+		--set driver.useHostMounts=true \
+		--set toolkit.version=v1.13.5 \
+		--set toolkit.image.repository=nvcr.io/nvidia/container-toolkit \
+		--set toolkit.image.tag=v1.13.5-ubuntu20.04 \
 		--set toolkit.env[0].name=CONTAINERD_CONFIG \
 		--set toolkit.env[0].value=/etc/containerd/config.toml \
 		--set toolkit.env[1].name=CONTAINERD_SOCKET \
 		--set toolkit.env[1].value=/run/containerd/containerd.sock \
 		--set toolkit.env[2].name=CONTAINERD_RUNTIME_CLASS \
 		--set toolkit.env[2].value=nvidia \
+		--set operator.validator.image.repository=nvcr.io/nvidia/cloud-native/gpu-operator-validator \
+		--set operator.validator.image.tag=v24.9.0 \
 		--namespace gpu-operator \
 		--create-namespace
 
@@ -157,3 +166,12 @@ help:
 	@echo "  clean            - Delete cluster and clean up"
 	@echo "  verify           - Verify installation"
 	@echo "  help             - Show this help message"
+
+.PHONY: validate-toolkit
+validate-toolkit:
+	@echo "Validating NVIDIA Container Toolkit..."
+	@docker exec kind-control-plane nvidia-container-cli info
+	@docker exec kind-control-plane nvidia-container-runtime --version
+	@echo "\nChecking toolkit pod status..."
+	@kubectl get pods -n gpu-operator -l app=nvidia-container-toolkit-daemonset
+	@kubectl describe pods -n gpu-operator -l app=nvidia-container-toolkit-daemonset
