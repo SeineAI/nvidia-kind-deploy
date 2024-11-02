@@ -65,21 +65,21 @@ setup-nvidia-runtime: verify-nvidia-library
 	# Wait for containerd to be ready
 	sleep 20
 	# Now verify the setup
-	$(MAKE) verify-nvidia-setup
-	$(MAKE) debug-nvidia-runtime
+	$(MAKE) verify-setup
+	$(MAKE) debug-all
 
 .PHONY: verify-nvidia-setup
 verify-nvidia-setup:
 	@echo "=== Verifying NVIDIA Setup ==="
 	@docker exec kind-control-plane bash -c '\
 		echo "1. Library files:" && \
-		ls -la /usr/lib/x86_64-linux-gnu/libnvidia-ml* && \
+			ls -la /usr/lib/x86_64-linux-gnu/libnvidia-ml* && \
 		echo "\n2. Library load test:" && \
-		ldd /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01 && \
+			ldd /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01 && \
 		echo "\n3. NVIDIA SMI test:" && \
-		nvidia-smi && \
+			nvidia-smi && \
 		echo "\n4. Container CLI test:" && \
-		nvidia-container-cli info'
+			nvidia-container-cli info'
 
 .PHONY: install-operators
 install-operators:
@@ -218,15 +218,209 @@ debug-logs:
 	@echo "Debugging GPU operator..."
 	./debug-gpu-operator.sh > gpu-operator-debug.log 2>&1
 
-.PHONY: debug-nvidia-runtime
-debug-nvidia-runtime:
+# Debug and Verification Targets
+.PHONY: debug-all
+debug-all: debug-libraries debug-runtime debug-containerd debug-operator debug-operator-init debug-containerd-config
+
+.PHONY: debug-libraries
+debug-libraries:
+	@echo "=== Debugging NVIDIA Libraries ==="
+	@docker exec kind-control-plane bash -c '\
+		echo "1. Library files and symlinks:" && \
+		ls -la /usr/lib/x86_64-linux-gnu/libnvidia* /usr/lib/x86_64-linux-gnu/libcuda* && \
+		echo "\n2. Library dependencies:" && \
+		for lib in libnvidia-ml.so.1 libcuda.so.1; do \
+			echo "\nChecking $$lib:" && \
+			ldd /usr/lib/x86_64-linux-gnu/$$lib; \
+		done && \
+		echo "\n3. ldconfig cache:" && \
+		ldconfig -v | grep -E "nvidia|cuda"'
+
+.PHONY: debug-runtime
+debug-runtime:
 	@echo "=== Debugging NVIDIA Runtime ==="
 	@docker exec kind-control-plane bash -c '\
-		echo "1. Config validation:" && \
+		echo "1. Runtime binaries:" && \
+		ls -la /usr/bin/nvidia-* && \
+		echo "\n2. Runtime config:" && \
 		cat /etc/nvidia-container-runtime/config.toml && \
-		echo "\n2. Runtime test:" && \
+		echo "\n3. Runtime test:" && \
 		nvidia-container-cli info && \
-		echo "\n3. Library status:" && \
-		ls -la /usr/lib/x86_64-linux-gnu/libnvidia* && \
-		echo "\n4. Runtime logs:" && \
-		tail -n 50 /var/log/nvidia-container-runtime-debug.log'
+		echo "\n4. Runtime version:" && \
+		nvidia-container-runtime --version && \
+		echo "\n5. SMI test:" && \
+		nvidia-smi'
+
+.PHONY: debug-containerd
+debug-containerd:
+	@echo "=== Debugging Containerd Setup ==="
+	@docker exec kind-control-plane bash -c '\
+		echo "1. Containerd config:" && \
+		cat /etc/containerd/config.toml | grep -A 10 nvidia && \
+		echo "\n2. Containerd status:" && \
+		systemctl status containerd && \
+		echo "\n3. Runtime paths:" && \
+		ls -la /usr/local/nvidia/toolkit/nvidia-container-runtime && \
+		echo "\n4. Socket:" && \
+		ls -la /run/containerd/containerd.sock'
+
+.PHONY: debug-operator
+debug-operator:
+	@echo "=== Debugging GPU Operator ==="
+	@echo "1. Pod status:"
+	@kubectl get pods -n gpu-operator
+	@echo "\n2. Device plugin logs:"
+	@kubectl logs -l app=nvidia-device-plugin-daemonset -n gpu-operator --tail=50
+	@echo "\n3. Container toolkit logs:"
+	@kubectl logs -l app=nvidia-container-toolkit-daemonset -n gpu-operator --tail=50
+	@echo "\n4. Operator logs:"
+	@kubectl logs -l app=gpu-operator -n gpu-operator --tail=50
+
+.PHONY: verify-setup
+verify-setup:
+	@echo "=== Verifying Complete Setup ==="
+	@echo "1. Checking libraries..."
+	@$(MAKE) -s verify-nvidia-library
+	@echo "\n2. Checking runtime..."
+	@$(MAKE) -s validate-runtime-setup
+
+.PHONY: collect-logs
+collect-logs:
+	@echo "=== Collecting All Logs ==="
+	@mkdir -p logs
+	@echo "1. Collecting containerd logs..."
+	@docker exec kind-control-plane journalctl -u containerd > logs/containerd.log
+	@echo "2. Collecting NVIDIA runtime logs..."
+	@docker exec kind-control-plane bash -c 'cat /var/log/nvidia-container-runtime-debug.log' > logs/nvidia-runtime.log 2>/dev/null || true
+	@echo "3. Collecting GPU operator logs..."
+	@kubectl logs -l app=gpu-operator -n gpu-operator > logs/gpu-operator.log 2>/dev/null || true
+	@echo "4. Collecting device plugin logs..."
+	@kubectl logs -l app=nvidia-device-plugin-daemonset -n gpu-operator > logs/device-plugin.log 2>/dev/null || true
+	@echo "Logs collected in ./logs directory"
+
+.PHONY: test-gpu
+test-gpu:
+	@echo "=== Testing GPU Access ==="
+	@kubectl run nvidia-smi --rm -it --restart=Never \
+		--image=nvidia/cuda:12.2.0-base-ubuntu20.04 \
+		--command -- nvidia-smi || \
+		(echo "GPU test failed. Running diagnostics..." && $(MAKE) debug-all)
+
+.PHONY: debug-operator-init
+debug-operator-init:
+	@echo "=== Debugging GPU Operator Init Containers ==="
+	@echo "1. Checking toolkit init container:"
+	@kubectl logs -n gpu-operator -l app=nvidia-container-toolkit-daemonset -c toolkit-validation || true
+	
+	@echo "\n2. Checking device plugin init container:"
+	@kubectl logs -n gpu-operator -l app=nvidia-device-plugin-daemonset -c toolkit-validation || true
+	
+	@echo "\n3. Checking DCGM init container:"
+	@kubectl logs -n gpu-operator -l app=nvidia-dcgm-exporter -c toolkit-validation || true
+	
+	@echo "\n4. Checking validator init containers:"
+	@kubectl logs -n gpu-operator -l app=nvidia-operator-validator -c driver-validation || true
+	@kubectl logs -n gpu-operator -l app=nvidia-operator-validator -c toolkit-validation || true
+	
+	@echo "\n5. Checking pod descriptions:"
+	@echo "\nToolkit pod:"
+	@kubectl describe pod -n gpu-operator -l app=nvidia-container-toolkit-daemonset
+	@echo "\nDevice plugin pod:"
+	@kubectl describe pod -n gpu-operator -l app=nvidia-device-plugin-daemonset
+	@echo "\nDCGM pod:"
+	@kubectl describe pod -n gpu-operator -l app=nvidia-dcgm-exporter
+	@echo "\nValidator pod:"
+	@kubectl describe pod -n gpu-operator -l app=nvidia-operator-validator
+
+.PHONY: debug-containerd-config
+debug-containerd-config:
+	@echo "=== Debugging Containerd Configuration ==="
+	@docker exec kind-control-plane bash -c '\
+		echo "1. Current containerd config:" && \
+		cat /etc/containerd/config.toml && \
+		echo "\n2. Runtime handler status:" && \
+		ctr runtime list && \
+		echo "\n3. Checking NVIDIA runtime:" && \
+		ls -l /usr/local/nvidia/toolkit/nvidia-container-runtime && \
+		echo "\n4. Runtime socket:" && \
+		ls -l /run/containerd/containerd.sock && \
+		echo "\n5. Containerd service status:" && \
+		systemctl status containerd'
+
+.PHONY: fix-operator-init
+fix-operator-init:
+	@echo "=== Fixing GPU Operator Init Issues ==="
+	@echo "1. Verifying NVIDIA runtime setup..."
+	@docker exec kind-control-plane nvidia-container-cli info || \
+		(echo "NVIDIA runtime not working, attempting fix..." && \
+		docker exec kind-control-plane bash -c '\
+			chmod 755 /usr/local/nvidia/toolkit/nvidia-container-runtime && \
+			systemctl restart containerd && \
+			sleep 5')
+	
+	@echo "\n2. Restarting stuck pods..."
+	@kubectl delete pod -n gpu-operator -l app=nvidia-container-toolkit-daemonset
+	@kubectl delete pod -n gpu-operator -l app=nvidia-device-plugin-daemonset
+	@kubectl delete pod -n gpu-operator -l app=nvidia-dcgm-exporter
+	@kubectl delete pod -n gpu-operator -l app=nvidia-operator-validator
+	
+	@echo "\n3. Waiting for pods to restart..."
+	@sleep 30
+	
+	@echo "\n4. New pod status:"
+	@kubectl get pods -n gpu-operator
+
+.PHONY: fix-nvidia-stack
+fix-nvidia-stack:
+	@echo "=== Fixing NVIDIA Container Stack ==="
+	@echo "1. Copying runtime configurations..."
+	@docker cp nvidia-container-runtime.toml kind-control-plane:/etc/nvidia-container-runtime/config.toml
+	@docker cp containerd-config.toml kind-control-plane:/etc/containerd/config.toml
+
+	@echo "2. Verifying NVIDIA runtime setup..."
+	@docker exec kind-control-plane bash -c 'chmod 755 /usr/local/nvidia/toolkit/nvidia-container-runtime && \
+		ls -la /usr/local/nvidia/toolkit/nvidia-container-runtime && \
+		nvidia-container-cli info'
+
+	@echo "3. Restarting containerd..."
+	@docker exec kind-control-plane systemctl restart containerd
+	@sleep 10
+
+	@echo "4. Restarting GPU operator pods..."
+	-kubectl delete pod -n gpu-operator --all
+	@sleep 30
+
+	@echo "5. Checking new pod status..."
+	@kubectl get pods -n gpu-operator
+
+.PHONY: verify-nvidia-stack
+verify-nvidia-stack:
+	@echo "=== Verifying NVIDIA Stack ==="
+	@echo "1. Checking runtime binary..."
+	@docker exec kind-control-plane ls -la /usr/local/nvidia/toolkit/nvidia-container-runtime
+	
+	@echo "\n2. Checking runtime config..."
+	@docker exec kind-control-plane cat /etc/nvidia-container-runtime/config.toml
+	
+	@echo "\n3. Checking containerd config..."
+	@docker exec kind-control-plane cat /etc/containerd/config.toml
+	
+	@echo "\n4. Testing NVIDIA runtime..."
+	@docker exec kind-control-plane nvidia-container-cli info
+	
+	@echo "\n5. Checking GPU operator pods..."
+	@kubectl get pods -n gpu-operator
+
+.PHONY: debug-toolkit-validation
+debug-toolkit-validation:
+	@echo "=== Debugging Toolkit Validation ==="
+	@echo "1. Checking toolkit pod logs..."
+	@kubectl logs -n gpu-operator -l app=nvidia-container-toolkit-daemonset --all-containers --prefix || true
+	
+	@echo "\n2. Checking toolkit pod events..."
+	@kubectl describe pod -n gpu-operator -l app=nvidia-container-toolkit-daemonset | grep -A 20 Events:
+	
+	@echo "\n3. Checking runtime on node..."
+	@docker exec kind-control-plane bash -c '\
+		nvidia-container-cli info && \
+		nvidia-container-runtime --version'

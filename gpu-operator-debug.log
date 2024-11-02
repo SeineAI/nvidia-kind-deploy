@@ -1,126 +1,176 @@
 Collecting logs...
-Error from server (BadRequest): container "driver-validation" in pod "nvidia-operator-validator-bj9wf" is waiting to start: PodInitializing
-Error from server (BadRequest): container "toolkit-validation" in pod "gpu-feature-discovery-hftdz" is waiting to start: PodInitializing
-Error from server (BadRequest): container "toolkit-validation" in pod "nvidia-device-plugin-daemonset-jxj7s" is waiting to start: PodInitializing
-Error from server (BadRequest): container "nvidia-container-toolkit-ctr" in pod "nvidia-container-toolkit-daemonset-ddwdp" is waiting to start: PodInitializing
-Error from server (BadRequest): container "toolkit-validation" in pod "nvidia-dcgm-exporter-mvchq" is waiting to start: PodInitializing
+Error from server (BadRequest): container "toolkit-validation" in pod "nvidia-operator-validator-tqnb5" is waiting to start: PodInitializing
+Error from server (BadRequest): container "gpu-feature-discovery-imex-init" in pod "gpu-feature-discovery-fb7wv" is waiting to start: PodInitializing
+Error from server (BadRequest): container "nvidia-device-plugin" in pod "nvidia-device-plugin-daemonset-r2fdd" is waiting to start: PodInitializing
+Error from server (BadRequest): container "nvidia-container-toolkit-ctr" in pod "nvidia-container-toolkit-daemonset-6xffv" is waiting to start: PodInitializing
+Error from server (BadRequest): container "nvidia-dcgm-exporter" in pod "nvidia-dcgm-exporter-9qxn9" is waiting to start: PodInitializing
 cat: /var/log/nvidia-container-runtime-debug.log: No such file or directory
 cat: /var/log/nvidia-container-cli-debug.log: No such file or directory
-cat: /var/log/nvidia-container-runtime.log: No such file or directory
 Cleaning logs...
-Raw logs saved to: /tmp/tmp.dLIL477ooB
-Cleaned logs saved to: /tmp/tmp.dLIL477ooB.clean
+Raw logs saved to: /tmp/tmp.04WpTCvumh
+Cleaned logs saved to: /tmp/tmp.04WpTCvumh.clean
 
 Cleaned Logs Content:
 ====================
 === CLEANED DEBUG LOG ===
 
 === Pod Status ===
-NAME                                                          READY   STATUS     RESTARTS        AGE     IP           NODE                 NOMINATED NODE   READINESS GATES
-gpu-feature-discovery-hftdz                                   0/1     Init:0/2   0               7m35s   <none>       kind-control-plane   <none>           <none>
-gpu-operator-669887d96d-tr669                                 1/1     Running    1 (7m19s ago)   7m55s   10.244.0.7   kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-gc-76dc6664b8-ndwq2       1/1     Running    0               7m55s   10.244.0.8   kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-master-7d6b448f6d-f7qh5   1/1     Running    0               7m55s   10.244.0.5   kind-control-plane   <none>           <none>
-gpu-operator-node-feature-discovery-worker-qjmq2              1/1     Running    0               7m55s   10.244.0.6   kind-control-plane   <none>           <none>
-nvidia-container-toolkit-daemonset-ddwdp                      0/1     Init:0/1   0               7m35s   10.244.0.9   kind-control-plane   <none>           <none>
-nvidia-dcgm-exporter-mvchq                                    0/1     Init:0/1   0               7m35s   <none>       kind-control-plane   <none>           <none>
-nvidia-device-plugin-daemonset-jxj7s                          0/1     Init:0/1   0               7m35s   <none>       kind-control-plane   <none>           <none>
-nvidia-operator-validator-bj9wf                               0/1     Init:0/4   0               7m35s   <none>       kind-control-plane   <none>           <none>
+NAME                                                          READY   STATUS     RESTARTS   AGE     IP            NODE                 NOMINATED NODE   READINESS GATES
+gpu-feature-discovery-fb7wv                                   0/1     Init:0/2   0          5m21s   10.244.0.26   kind-control-plane   <none>           <none>
+gpu-operator-669887d96d-wfz2j                                 1/1     Running    0          5m52s   10.244.0.19   kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-gc-76dc6664b8-bgd8n       1/1     Running    0          5m52s   10.244.0.18   kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-master-7d6b448f6d-74d8q   1/1     Running    0          5m52s   10.244.0.20   kind-control-plane   <none>           <none>
+gpu-operator-node-feature-discovery-worker-4nhh7              1/1     Running    0          5m51s   10.244.0.23   kind-control-plane   <none>           <none>
+nvidia-container-toolkit-daemonset-6xffv                      0/1     Init:0/1   0          5m51s   10.244.0.21   kind-control-plane   <none>           <none>
+nvidia-dcgm-exporter-9qxn9                                    0/1     Init:0/1   0          5m21s   10.244.0.25   kind-control-plane   <none>           <none>
+nvidia-device-plugin-daemonset-r2fdd                          0/1     Init:0/1   0          5m21s   10.244.0.24   kind-control-plane   <none>           <none>
+nvidia-operator-validator-tqnb5                               0/1     Init:0/4   0          5m51s   10.244.0.22   kind-control-plane   <none>           <none>
 
 
 === Unique Error Messages ===
-Nov 02 04:47:17 kind-control-plane containerd[4452]: time="2024-11-02T04:47:17.379014184Z" level=warning msg="cleaning up after shim disconnected" id=8988b4cc405e686d981e21567f3f7ca4c423c2687260043b349eb6b30fa24e6d namespace=k8s.io
-Nov 02 04:47:17 kind-control-plane containerd[4452]: time="2024-11-02T04:47:17.388319856Z" level=warning msg="cleanup warnings time=\"2024-11-02T04:47:17Z\" level=warning msg=\"failed to remove runc container\" error=\"/usr/local/nvidia/toolkit/nvidia-container-runtime did not terminate successfully: exit status 1: time=\\\"2024-11-02T04:47:17Z\\\" level=error msg=\\\"error loading config: failed to unmarshal config: (12, 1): Can't convert [/usr/lib/x86_64-linux-gnu /usr/local/nvidia/lib64 /usr/bin /usr/lib/nvidia]([]interface {}) to a slice\\\"\\n\" runtime=io.containerd.runc.v2\ntime=\"2024-11-02T04:47:17Z\" level=warning msg=\"failed to read init pid file\" error=\"open /run/containerd/io.containerd.runtime.v2.task/k8s.io/8988b4cc405e686d981e21567f3f7ca4c423c2687260043b349eb6b30fa24e6d/init.pid: no such file or directory\" runtime=io.containerd.runc.v2\n" namespace=k8s.io
-Nov 02 04:47:17 kind-control-plane containerd[4452]: time="2024-11-02T04:47:17.389251160Z" level=error msg="copy shim log" error="read /proc/self/fd/108: file already closed" namespace=k8s.io
-Nov 02 04:47:17 kind-control-plane containerd[4452]: time="2024-11-02T04:47:17.455731067Z" level=error msg="RunPodSandbox for &PodSandboxMetadata{Name:nvidia-device-plugin-daemonset-jxj7s,Uid:083b043f-4f55-485d-857e-0fa1b7758128,Namespace:gpu-operator,Attempt:0,} failed, error" error="failed to create containerd task: failed to create shim task: OCI runtime create failed: unable to retrieve OCI runtime error (open /run/containerd/io.containerd.runtime.v2.task/k8s.io/8988b4cc405e686d981e21567f3f7ca4c423c2687260043b349eb6b30fa24e6d/log.json: no such file or directory): /usr/local/nvidia/toolkit/nvidia-container-runtime did not terminate successfully: exit status 1: unknown"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:22Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:27Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:32Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:37Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:42Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:47Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:52Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:40:57Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:22Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:27Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:32Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:37Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:42Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:47Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:52Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:41:57Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:22Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:27Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:32Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:37Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:42Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:47Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:52Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:42:57Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:22Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:27Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:32Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:37Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:42Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:47Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:52Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:43:57Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:22Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:27Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:32Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:37Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:42Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:47Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:52Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:44:57Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:22Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:27Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:32Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:37Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:42Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:47Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:52Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:45:57Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:22Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:27Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:32Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:37Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:42Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:47Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:52Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:46:57Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:47:02Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:47:07Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:47:12Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
-[pod/nvidia-container-toolkit-daemonset-ddwdp/driver-validation] time="2024-11-02T04:47:17Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+Nov 02 05:46:44 kind-control-plane containerd[9259]: time="2024-11-02T05:46:44.669813489Z" level=warning msg="Failed to get podSandbox status for container event for sandboxID \"3364b168e82960425341a927b98803dbb1ccf824edd298e35c7ee4801aeb3578\": an error occurred when try to find sandbox: not found. Sending the event with nil podSandboxStatus."
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:42:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:42:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:42:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:42:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:42:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:42:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:42:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:08Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:13Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:18Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:23Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:43:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:08Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:13Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:18Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:23Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:44:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:08Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:13Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:18Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:23Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:45:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:08Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:13Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:18Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:23Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:46:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:08Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:13Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:18Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:23Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:47:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:48:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:48:09Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:48:14Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-container-toolkit-daemonset-6xffv/driver-validation] time="2024-11-02T05:48:19Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:42:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:42:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:42:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:42:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:42:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:42:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:42:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:08Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:13Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:18Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:23Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:53Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:43:58Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:03Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:08Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:13Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:18Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:23Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:28Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:33Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:38Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:43Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:48Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:54Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:44:59Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:04Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:09Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:14Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:19Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:24Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:29Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:34Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:39Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:44Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:49Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:54Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:45:59Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:04Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:09Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:14Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:19Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:24Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:29Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:34Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:39Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:44Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:49Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:54Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:46:59Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:04Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:09Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:14Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:19Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:24Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:29Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:34Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:39Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:44Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:49Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:54Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:47:59Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:48:04Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:48:09Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:48:14Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
+[pod/nvidia-operator-validator-tqnb5/driver-validation] time="2024-11-02T05:48:19Z" level=warning msg="failed to validate the driver, retrying after 5 seconds\n"
 
 === NVIDIA Libraries ===
 	libnvidia-glsi.so.535.104.12 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535.104.12
@@ -134,12 +184,12 @@ Nov 02 04:47:17 kind-control-plane containerd[4452]: time="2024-11-02T04:47:17.4
 -rwxr-xr-x 1 root root   1942744 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01
 -rwxr-xr-x 1 root root   3322680 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.104.12
 -rwxr-xr-x 1 root root   4553912 May 12 19:30 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535.183.01
-lrwxrwxrwx 1 root root        17 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so -> libnvidia-ml.so.1
-lrwxrwxrwx 1 root root        19 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 -> libnvidia-ml.so.535
-lrwxrwxrwx 1 root root        20 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
-lrwxrwxrwx 1 root root        26 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
+lrwxrwxrwx 1 root root        17 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so -> libnvidia-ml.so.1
+lrwxrwxrwx 1 root root        19 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 -> libnvidia-ml.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
+lrwxrwxrwx 1 root root        26 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1 -> libnvidia-ngx.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
+lrwxrwxrwx 1 root root        27 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
 --
 
 	libnvidia-tls.so (libc6,x86-64, OS ABI: Linux 2.3.99) => /usr/lib/x86_64-linux-gnu/libnvidia-tls.so
@@ -178,55 +228,55 @@ lrwxrwxrwx 1 root root        27 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidi
 -rwxr-xr-x 1 root root 118931952 Sep 20  2023 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535.104.12
 -rwxr-xr-x 1 root root 118952432 May 12 20:29 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535.183.01
 === ldconfig Cache ===
-lrwxrwxrwx 1 root root        17 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so -> libnvidia-ml.so.1
+lrwxrwxrwx 1 root root        17 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so -> libnvidia-ml.so.1
 lrwxrwxrwx 1 root root        18 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so -> libnvidia-fbc.so.1
-lrwxrwxrwx 1 root root        19 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 -> libnvidia-ml.so.535
-lrwxrwxrwx 1 root root        20 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so -> libnvidia-cfg.so.535
-lrwxrwxrwx 1 root root        20 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
-lrwxrwxrwx 1 root root        20 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so -> libnvidia-tls.so.535
+lrwxrwxrwx 1 root root        19 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1 -> libnvidia-ml.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so -> libnvidia-cfg.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so -> libnvidia-ngx.so.535
+lrwxrwxrwx 1 root root        20 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so -> libnvidia-tls.so.535
 lrwxrwxrwx 1 root root        21 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so -> libnvidia-encode.so.1
-lrwxrwxrwx 1 root root        21 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so -> libnvidia-glsi.so.535
-lrwxrwxrwx 1 root root        21 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so -> libnvidia-nvvm.so.535
-lrwxrwxrwx 1 root root        22 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so -> libnvidia-egl-gbm.so.1
-lrwxrwxrwx 1 root root        23 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so -> libnvidia-glcore.so.535
-lrwxrwxrwx 1 root root        23 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so -> libnvidia-opencl.so.535
-lrwxrwxrwx 1 root root        23 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so -> libnvidia-pkcs11.so.535
-lrwxrwxrwx 1 root root        23 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so -> libnvidia-rtcore.so.535
-lrwxrwxrwx 1 root root        24 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-container.so -> libnvidia-container.so.1
-lrwxrwxrwx 1 root root        24 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so -> libnvidia-eglcore.so.535
+lrwxrwxrwx 1 root root        21 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so -> libnvidia-glsi.so.535
+lrwxrwxrwx 1 root root        21 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so -> libnvidia-nvvm.so.535
+lrwxrwxrwx 1 root root        22 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so -> libnvidia-egl-gbm.so.1
+lrwxrwxrwx 1 root root        23 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so -> libnvidia-glcore.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so -> libnvidia-opencl.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so -> libnvidia-pkcs11.so.535
+lrwxrwxrwx 1 root root        23 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so -> libnvidia-rtcore.so.535
+lrwxrwxrwx 1 root root        24 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-container.so -> libnvidia-container.so.1
+lrwxrwxrwx 1 root root        24 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so -> libnvidia-eglcore.so.535
 lrwxrwxrwx 1 root root        26 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so -> libnvidia-opticalflow.so.1
-lrwxrwxrwx 1 root root        26 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so -> libnvidia-glvkspirv.so.535
-lrwxrwxrwx 1 root root        26 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
+lrwxrwxrwx 1 root root        26 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so -> libnvidia-glvkspirv.so.535
+lrwxrwxrwx 1 root root        26 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535 -> libnvidia-ml.so.535.183.01
 lrwxrwxrwx 1 root root        26 Nov  5  2023 /usr/lib/x86_64-linux-gnu/libnvidia-egl-gbm.so.1 -> libnvidia-egl-gbm.so.1.1.0
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.1 -> libnvidia-cfg.so.535.183.01
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.1 -> libnvidia-fbc.so.535.183.01
 lrwxrwxrwx 1 root root        27 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.1 -> libnvidia-ngx.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.535 -> libnvidia-cfg.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so -> libnvidia-container-go.so.1
-lrwxrwxrwx 1 root root        27 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.535 -> libnvidia-fbc.so.535.183.01
-lrwxrwxrwx 1 root root        27 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
-lrwxrwxrwx 1 root root        27 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535 -> libnvidia-tls.so.535.104.12
+lrwxrwxrwx 1 root root        27 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.535 -> libnvidia-cfg.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so -> libnvidia-container-go.so.1
+lrwxrwxrwx 1 root root        27 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-fbc.so.535 -> libnvidia-fbc.so.535.183.01
+lrwxrwxrwx 1 root root        27 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so.535 -> libnvidia-ngx.so.535.104.12
+lrwxrwxrwx 1 root root        27 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-tls.so.535 -> libnvidia-tls.so.535.104.12
 lrwxrwxrwx 1 root root        28 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.4 -> libnvidia-nvvm.so.535.183.01
-lrwxrwxrwx 1 root root        28 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535 -> libnvidia-glsi.so.535.104.12
-lrwxrwxrwx 1 root root        28 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.535 -> libnvidia-nvvm.so.535.183.01
-lrwxrwxrwx 1 root root        29 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1 -> libnvidia-container.so.1.15.0
-lrwxrwxrwx 1 root root        29 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so -> libnvidia-ptxjitcompiler.so.1
+lrwxrwxrwx 1 root root        28 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-glsi.so.535 -> libnvidia-glsi.so.535.104.12
+lrwxrwxrwx 1 root root        28 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-nvvm.so.535 -> libnvidia-nvvm.so.535.183.01
+lrwxrwxrwx 1 root root        29 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-container.so.1 -> libnvidia-container.so.1.15.0
+lrwxrwxrwx 1 root root        29 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so -> libnvidia-ptxjitcompiler.so.1
 lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1 -> libnvidia-encode.so.535.183.01
 lrwxrwxrwx 1 root root        30 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.1 -> libnvidia-opencl.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.535 -> libnvidia-encode.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535 -> libnvidia-glcore.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.535 -> libnvidia-opencl.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so.535 -> libnvidia-pkcs11.so.535.183.01
-lrwxrwxrwx 1 root root        30 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535 -> libnvidia-rtcore.so.535.183.01
-lrwxrwxrwx 1 root root        31 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535 -> libnvidia-eglcore.so.535.104.12
-lrwxrwxrwx 1 root root        31 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.1 -> libnvidia-ptxjitcompiler.so.535
-lrwxrwxrwx 1 root root        32 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1 -> libnvidia-container-go.so.1.15.0
-lrwxrwxrwx 1 root root        32 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so -> libnvidia-pkcs11-openssl3.so.535
-lrwxrwxrwx 1 root root        33 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535 -> libnvidia-glvkspirv.so.535.104.12
+lrwxrwxrwx 1 root root        30 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.535 -> libnvidia-encode.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-glcore.so.535 -> libnvidia-glcore.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-opencl.so.535 -> libnvidia-opencl.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11.so.535 -> libnvidia-pkcs11.so.535.183.01
+lrwxrwxrwx 1 root root        30 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so.535 -> libnvidia-rtcore.so.535.183.01
+lrwxrwxrwx 1 root root        31 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-eglcore.so.535 -> libnvidia-eglcore.so.535.104.12
+lrwxrwxrwx 1 root root        31 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.1 -> libnvidia-ptxjitcompiler.so.535
+lrwxrwxrwx 1 root root        32 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-container-go.so.1 -> libnvidia-container-go.so.1.15.0
+lrwxrwxrwx 1 root root        32 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so -> libnvidia-pkcs11-openssl3.so.535
+lrwxrwxrwx 1 root root        33 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-glvkspirv.so.535 -> libnvidia-glvkspirv.so.535.104.12
 lrwxrwxrwx 1 root root        35 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.1 -> libnvidia-opticalflow.so.535.183.01
-lrwxrwxrwx 1 root root        35 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.535 -> libnvidia-opticalflow.so.535.183.01
-lrwxrwxrwx 1 root root        38 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535 -> libnvidia-ptxjitcompiler.so.535.183.01
-lrwxrwxrwx 1 root root        39 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.535 -> libnvidia-pkcs11-openssl3.so.535.183.01
+lrwxrwxrwx 1 root root        35 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-opticalflow.so.535 -> libnvidia-opticalflow.so.535.183.01
+lrwxrwxrwx 1 root root        38 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535 -> libnvidia-ptxjitcompiler.so.535.183.01
+lrwxrwxrwx 1 root root        39 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-pkcs11-openssl3.so.535 -> libnvidia-pkcs11-openssl3.so.535.183.01
 
 === Containerd Config Highlights ===
         [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
@@ -248,6 +298,7 @@ lrwxrwxrwx 1 root root        39 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidi
 === CLI Debug Log ===
 
 === Runtime Log ===
+{"level":"debug","msg":"Locating NVIDIA Container Toolkit CLI as nvidia-ctk","time":"2024-11-02T05:20:33Z"}
 
 === nvidia-smi Output ===
 === nvidia-smi ===
@@ -255,5 +306,5 @@ lrwxrwxrwx 1 root root        39 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidi
 === NVIDIA Libraries ===
 lrwxrwxrwx 1 root root        24 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so -> libnvidia-allocator.so.1
 lrwxrwxrwx 1 root root        33 May 13 01:12 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.1 -> libnvidia-allocator.so.535.183.01
-lrwxrwxrwx 1 root root        33 Nov  2 04:38 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.535 -> libnvidia-allocator.so.535.113.01
+lrwxrwxrwx 1 root root        33 Nov  2 05:19 /usr/lib/x86_64-linux-gnu/libnvidia-allocator.so.535 -> libnvidia-allocator.so.535.113.01
 

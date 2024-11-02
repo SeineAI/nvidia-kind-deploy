@@ -20,6 +20,42 @@ docker exec kind-control-plane bash -c '
     sleep 2
 '
 
+# Verify and copy NVIDIA binaries
+REQUIRED_BINARIES=(
+    "nvidia-smi"
+    "nvidia-debugdump"
+    "nvidia-persistenced"
+    "nvidia-container-runtime"
+    "nvidia-container-runtime-hook"
+    "nvidia-container-cli"
+    "nvidia-cuda-mps-control"
+    "nvidia-cuda-mps-server"
+)
+
+echo "Verifying NVIDIA binaries..."
+for binary in "${REQUIRED_BINARIES[@]}"; do
+    if [ ! -f "/usr/bin/$binary" ] || [ ! -s "/usr/bin/$binary" ]; then
+        echo "Warning: $binary is missing or empty in /usr/bin/"
+        continue
+    fi
+    echo "Copying $binary..."
+    docker cp --follow-link "/usr/bin/$binary" kind-control-plane:/usr/bin/
+    docker exec kind-control-plane chmod +x "/usr/bin/$binary"
+    # Verify the copy
+    size=$(docker exec kind-control-plane stat -c%s "/usr/bin/$binary")
+    if [ "$size" -eq 0 ]; then
+        echo "Error: Failed to copy $binary properly"
+        exit 1
+    fi
+done
+
+# Create necessary directories
+docker exec kind-control-plane mkdir -p /usr/local/nvidia/bin
+docker exec kind-control-plane mkdir -p /usr/local/nvidia/lib64
+docker exec kind-control-plane mkdir -p /usr/lib/x86_64-linux-gnu
+docker exec kind-control-plane mkdir -p /usr/lib/nvidia
+docker exec kind-control-plane mkdir -p /usr/local/nvidia/toolkit
+
 # Copy NVIDIA binaries
 docker exec kind-control-plane mkdir -p /usr/local/nvidia/bin
 for binary in nvidia-smi nvidia-debugdump nvidia-persistenced nvidia-cuda-mps-control nvidia-cuda-mps-server nvidia-container-runtime nvidia-container-runtime-hook nvidia-container-cli; do
@@ -119,36 +155,7 @@ fi
 
 # Configure nvidia-container-runtime
 docker exec kind-control-plane mkdir -p /etc/nvidia-container-runtime
-docker exec kind-control-plane bash -c 'cat > /etc/nvidia-container-runtime/config.toml << EOF
-disable-require = false
-debug = "/var/log/nvidia-container-runtime-debug.log"
-debug-file = "/var/log/nvidia-container-runtime-debug.log"
-verbosity = "debug"
-ldconfig = "@/sbin/ldconfig.real"
-
-[nvidia-container-cli]
-debug = "/var/log/nvidia-container-cli-debug.log"
-debug-file = "/var/log/nvidia-container-cli-debug.log"
-verbosity = "debug"
-root = "/usr/lib/x86_64-linux-gnu"
-path = [
-    "/usr/lib/x86_64-linux-gnu",
-    "/usr/local/nvidia/lib64",
-    "/usr/bin",
-    "/usr/lib/nvidia"
-]
-environment = []
-library-root = "/usr/lib/x86_64-linux-gnu"
-library-path = [
-    "/usr/lib/x86_64-linux-gnu",
-    "/usr/lib/nvidia"
-]
-
-[nvidia-container-runtime]
-debug = "/var/log/nvidia-container-runtime.log"
-debug-file = "/var/log/nvidia-container-runtime.log"
-verbosity = "debug"
-EOF'
+docker cp nvidia-container-runtime.toml kind-control-plane:/etc/nvidia-container-runtime/config.toml
 
 # Validate the config
 docker exec kind-control-plane bash -c '
@@ -179,39 +186,12 @@ docker exec kind-control-plane ldconfig
 docker exec kind-control-plane mkdir -p /var/log
 docker exec kind-control-plane chmod 777 /var/log
 
-# Verify NVIDIA setup
-echo "Verifying NVIDIA setup..."
-docker exec kind-control-plane nvidia-smi
-
-# Add this before "NVIDIA setup complete"
-echo "=== Debugging NVIDIA Setup ==="
-docker exec kind-control-plane bash -c '
-    echo "\n3. Library dependencies:"
-    ldd /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.$NVIDIA_ML_VERSION || true
-    echo "\n4. Library in ldconfig:"
-    ldconfig -v | grep nvidia-ml
-    echo "\n5. Testing library load:"
-    LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/lib/nvidia nvidia-smi
-'
-
-echo "=== Verifying Containerd Configuration ==="
-docker exec kind-control-plane bash -c '
-    echo "1. Checking containerd config:"
-    cat /etc/containerd/config.toml | grep nvidia
-    echo "\n2. Checking containerd status:"
-    systemctl status containerd
-    echo "\n3. Checking runtime executable:"
-    ls -la /usr/local/nvidia/toolkit/nvidia-container-runtime
-'
-
-echo "=== Verifying Containerd Runtime ==="
-docker exec kind-control-plane bash -c '
-    echo "1. Checking runtime configuration:"
-    containerd config dump | grep -A 10 nvidia
-    echo "\n2. Checking runtime binary:"
-    ls -la /usr/local/nvidia/toolkit/nvidia-container-runtime
-    echo "\n3. Verifying runtime permissions:"
-    namei -l /usr/local/nvidia/toolkit/nvidia-container-runtime
-'
+# Update container runtime environment
+docker exec kind-control-plane mkdir -p /etc/systemd/system/containerd.service.d
+docker exec kind-control-plane bash -c 'cat > /etc/systemd/system/containerd.service.d/env.conf << EOF
+[Service]
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/nvidia/bin"
+Environment="LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/local/nvidia/lib64"
+EOF'
 
 echo "NVIDIA setup complete"

@@ -1,0 +1,23 @@
+disable-require = false
+debug = "/var/log/nvidia-container-runtime-debug.log"
+verbosity = "debug"
+ldconfig = "@/sbin/ldconfig.real"
+runtimes = ["docker", "containerd"]
+
+[nvidia-container-cli]
+root = "/usr/lib/x86_64-linux-gnu"
+path = "/usr/lib/x86_64-linux-gnu:/usr/local/nvidia/lib64:/usr/bin:/usr/lib/nvidia"
+environment = []
+debug = "/var/log/nvidia-container-cli-debug.log"
+verbosity = "debug"
+library-root = "/usr/lib/x86_64-linux-gnu"
+library-path = "/usr/lib/x86_64-linux-gnu:/usr/lib/nvidia"
+load-kmods = true
+no-cgroups = false
+user = "root:root"
+ldconfig = "@/sbin/ldconfig.real"
+
+[nvidia-container-runtime]
+debug = "/var/log/nvidia-container-runtime.log"
+verbosity = "debug"
+log-level = "debug" 
