@@ -48,7 +48,10 @@ setup-nvidia-runtime:
 	# Configure containerd
 	docker cp containerd-config.toml kind-control-plane:/etc/containerd/config.toml
 	docker exec kind-control-plane systemctl restart containerd
-	sleep 10
+	# Verify runtime setup
+	docker exec kind-control-plane nvidia-container-cli info
+	# Wait for containerd to be ready
+	sleep 20
 
 .PHONY: validate-nvidia-setup
 validate-nvidia-setup:
@@ -177,3 +180,11 @@ validate-toolkit:
 	@echo "\nChecking toolkit pod status..."
 	@kubectl get pods -n gpu-operator -l app=nvidia-container-toolkit-daemonset
 	@kubectl describe pods -n gpu-operator -l app=nvidia-container-toolkit-daemonset
+
+.PHONY: validate-runtime-setup
+validate-runtime-setup:
+	@echo "Validating runtime setup..."
+	@docker exec kind-control-plane ls -l /usr/bin/nvidia-container-runtime
+	@docker exec kind-control-plane ls -l /run/containerd/containerd.sock
+	@docker exec kind-control-plane systemctl status containerd
+	@docker exec kind-control-plane nvidia-container-cli info
