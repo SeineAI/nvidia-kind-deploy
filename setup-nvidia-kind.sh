@@ -36,21 +36,32 @@ for lib in $(find /usr/lib/x86_64-linux-gnu -name "libnvidia-*.so*" -o -name "li
         version=$(echo "$basename" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+$')
         docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && \
             ln -sf $basename $base.so.${version%%.*} && \
-            ln -sf $base.so.${version%%.*} $base.so"
+            ln -sf $base.so.${version%%.*} $base.so && \
+            cd /usr/lib/nvidia && \
+            ln -sf ../x86_64-linux-gnu/$base.so $base.so"
     fi
 done
 
-docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-
-linux-gnu && ln -sf libnvidia-ml.so.1 libnvidia-ml.so"
+# Specifically handle libnvidia-ml.so
+docker exec kind-control-plane bash -c 'cd /usr/lib/x86_64-linux-gnu && \
+    ln -sf libnvidia-ml.so.535.183.01 libnvidia-ml.so.535 && \
+    ln -sf libnvidia-ml.so.535 libnvidia-ml.so.1 && \
+    ln -sf libnvidia-ml.so.1 libnvidia-ml.so && \
+    cd /usr/lib/nvidia && \
+    ln -sf ../x86_64-linux-gnu/libnvidia-ml.so libnvidia-ml.so'
 
-# Specifically handle libnvidia-ml.so with explicit versioning
-if [ -f "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1" ]; then
-    docker cp "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1" kind-control-plane:/usr/lib/x86_64-linux-gnu/
-    docker exec kind-control-plane chmod 755 "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1"
-    docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && \
-        ln -sf libnvidia-ml.so.1 libnvidia-ml.so && \
-        ln -sf libnvidia-ml.so /usr/lib/nvidia/libnvidia-ml.so"
-fi
+# Add verification
+docker exec kind-control-plane bash -c '
+    echo "=== Library Verification ==="
+    echo "1. Main library location:"
+    ls -l /usr/lib/x86_64-linux-gnu/libnvidia-ml*
+    echo "2. Nvidia lib directory:"
+    ls -l /usr/lib/nvidia/libnvidia-ml*
+    echo "3. Library cache:"
+    ldconfig -p | grep nvidia-ml
+    echo "4. Library search paths:"
+    ldconfig -v 2>/dev/null | grep -B1 "libnvidia-ml"
+'
 
 # Copy NVIDIA container runtime to toolkit directory
 if [ -f "/usr/bin/nvidia-container-runtime" ]; then
