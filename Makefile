@@ -68,7 +68,7 @@ install-operators:
 	@echo "Installing GPU Operator..."
 	helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
 	helm repo update
-	DRIVER_VERSION=$(shell nvidia-smi --query-gpu=driver_version --format=csv,noheader)
+	DRIVER_VERSION=$(shell nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -n1)
 	helm install gpu-operator \
 		nvidia/gpu-operator \
 		--set driver.enabled=false \
