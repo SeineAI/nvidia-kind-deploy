@@ -18,22 +18,25 @@ nodes:
     containerPath: /dev/nvidia-modeset
   - hostPath: /dev/nvidia-caps
     containerPath: /dev/nvidia-caps
-  # NVIDIA binaries and libraries
+  
+  # NVIDIA Binaries
   - hostPath: /usr/bin/nvidia-smi
     containerPath: /usr/bin/nvidia-smi
   - hostPath: /usr/bin/nvidia-debugdump
     containerPath: /usr/bin/nvidia-debugdump
   - hostPath: /usr/bin/nvidia-persistenced
     containerPath: /usr/bin/nvidia-persistenced
-  # NVIDIA libraries
-  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
-    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
-  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
-    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
-  - hostPath: /usr/lib/x86_64-linux-gnu/libcuda.so.1
-    containerPath: /usr/lib/x86_64-linux-gnu/libcuda.so.1
-  - hostPath: /usr/lib/x86_64-linux-gnu/libcuda.so
-    containerPath: /usr/lib/x86_64-linux-gnu/libcuda.so
+  
+  # Essential NVIDIA libraries only
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01
+  - hostPath: /usr/lib/x86_64-linux-gnu/libcuda.so.535.183.01
+    containerPath: /usr/lib/x86_64-linux-gnu/libcuda.so.535.183.01
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535.183.01
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.535.183.01
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-fatbinaryloader.so.535.183.01
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-fatbinaryloader.so.535.183.01
+
   extraPortMappings:
   - containerPort: 30000
     hostPort: 30000
