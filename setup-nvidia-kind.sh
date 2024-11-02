@@ -22,24 +22,40 @@ done
 docker exec kind-control-plane mkdir -p /usr/local/nvidia/lib64
 docker exec kind-control-plane mkdir -p /usr/lib/x86_64-linux-gnu
 docker exec kind-control-plane mkdir -p /usr/lib/nvidia
+docker exec kind-control-plane bash -c 'mkdir -p /usr/local/nvidia/toolkit'
 
 # Copy and link NVIDIA libraries
 for lib in $(find /usr/lib/x86_64-linux-gnu -name "libnvidia-*.so*" -o -name "libcuda*.so*"); do
     basename=$(basename "$lib")
     docker cp "$lib" kind-control-plane:/usr/lib/x86_64-linux-gnu/
     docker exec kind-control-plane chmod 755 "/usr/lib/x86_64-linux-gnu/$basename"
-    # Create symlinks if needed
-    if [[ $basename == *.so.* ]]; then
-        base=$(echo "$basename" | cut -d. -f1).so
-        docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && ln -sf $basename $base"
+    
+    # Create version-independent symlinks
+    if [[ $basename =~ (.+)\.so\.[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+        base="${BASH_REMATCH[1]}"
+        version=$(echo "$basename" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+$')
+        docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && \
+            ln -sf $basename $base.so.${version%%.*} && \
+            ln -sf $base.so.${version%%.*} $base.so"
     fi
 done
 
-# Specifically handle libnvidia-ml.so
+docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-
+linux-gnu && ln -sf libnvidia-ml.so.1 libnvidia-ml.so"
+
+# Specifically handle libnvidia-ml.so with explicit versioning
 if [ -f "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1" ]; then
     docker cp "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1" kind-control-plane:/usr/lib/x86_64-linux-gnu/
     docker exec kind-control-plane chmod 755 "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1"
-    docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && ln -sf libnvidia-ml.so.1 libnvidia-ml.so"
+    docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && \
+        ln -sf libnvidia-ml.so.1 libnvidia-ml.so && \
+        ln -sf libnvidia-ml.so /usr/lib/nvidia/libnvidia-ml.so"
+fi
+
+# Copy NVIDIA container runtime to toolkit directory
+if [ -f "/usr/bin/nvidia-container-runtime" ]; then
+    docker cp "/usr/bin/nvidia-container-runtime" kind-control-plane:/usr/local/nvidia/toolkit/
+    docker exec kind-control-plane chmod 755 "/usr/local/nvidia/toolkit/nvidia-container-runtime"
 fi
 
 # Copy additional required files
@@ -62,7 +78,10 @@ debug = "/var/log/nvidia-container-cli-debug.log"
 debug-file = "/var/log/nvidia-container-cli-debug.log"
 verbosity = "debug"
 root = "/usr/lib/x86_64-linux-gnu"
-path = ["/usr/lib/x86_64-linux-gnu", "/usr/local/nvidia/lib64", "/usr/bin"]
+path = ["/usr/lib/x86_64-linux-gnu", "/usr/local/nvidia/lib64", "/usr/bin", "/usr/lib/nvidia"]
+environment = []
+library-root = "/usr/lib/x86_64-linux-gnu"
+library-path = ["/usr/lib/x86_64-linux-gnu", "/usr/lib/nvidia"]
 
 [nvidia-container-runtime]
 debug = "/var/log/nvidia-container-runtime.log"
