@@ -1,7 +1,7 @@
 # DCGM Monitoring Setup Guide
 
 ## Overview
-This guide explains the setup of NVIDIA DCGM (Data Center GPU Manager) monitoring in Kubernetes using Prometheus.
+This guide explains the setup of NVIDIA DCGM (Data Center GPU Manager) monitoring in Kubernetes using Prometheus and visualization using Grafana.
 
 ## DCGM ServiceMonitor Configuration
 
@@ -105,6 +105,41 @@ Binds the role to Prometheus service account.
    - Scrapes metrics from DCGM exporter
    - Stores metrics in time-series database
 
+## NVIDIA DCGM Dashboard Setup
+
+### Importing Dashboard
+1. Access Grafana UI (default: http://localhost:3000)
+2. Log in with your credentials (default: admin/admin)
+3. Click on the "+" icon in the left sidebar
+4. Select "Import"
+5. Upload the dashboard JSON file from `./dashboards/12239_rev2.json`
+   - Or copy and paste the JSON content
+6. Select the Prometheus data source
+7. Click "Import"
+
+### Available Metrics and Panels
+The DCGM dashboard provides visualizations for:
+- GPU Temperature
+  - Real-time temperature graphs
+  - Average temperature gauge
+- Power Usage
+  - Per-GPU power consumption
+  - Total power consumption gauge
+- GPU Performance
+  - SM Clock frequencies
+  - GPU Utilization
+  - Tensor Core Utilization
+- Memory Usage
+  - Framebuffer memory usage
+
+### Dashboard Features
+- Auto-refresh options (5s to 1d intervals)
+- GPU instance selection
+- Time range selection
+- Dark theme optimized
+- Professional gauge visualizations
+- Detailed tooltips
+
 ## Available Metrics
 DCGM exporter provides metrics including:
 - GPU utilization
@@ -116,5 +151,6 @@ DCGM exporter provides metrics including:
 
 ## Integration with Grafana
 - Metrics are available in Prometheus
-- Can be visualized using Grafana dashboards
+- Pre-configured dashboard available
 - Custom dashboards can be created for specific monitoring needs
+- Supports alerting based on GPU metrics
