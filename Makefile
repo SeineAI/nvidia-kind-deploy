@@ -66,6 +66,7 @@ setup-nvidia-runtime: verify-nvidia-library
 	sleep 20
 	# Now verify the setup
 	$(MAKE) verify-nvidia-setup
+	$(MAKE) debug-nvidia-runtime
 
 .PHONY: verify-nvidia-setup
 verify-nvidia-setup:
@@ -211,3 +212,21 @@ verify-nvidia-library:
 		exit 1; \
 	fi
 	@ls -la /usr/lib/x86_64-linux-gnu/libnvidia-ml*
+
+.PHONY: debug-logs
+debug-logs:
+	@echo "Debugging GPU operator..."
+	./debug-gpu-operator.sh > gpu-operator-debug.log 2>&1
+
+.PHONY: debug-nvidia-runtime
+debug-nvidia-runtime:
+	@echo "=== Debugging NVIDIA Runtime ==="
+	@docker exec kind-control-plane bash -c '\
+		echo "1. Config validation:" && \
+		cat /etc/nvidia-container-runtime/config.toml && \
+		echo "\n2. Runtime test:" && \
+		nvidia-container-cli info && \
+		echo "\n3. Library status:" && \
+		ls -la /usr/lib/x86_64-linux-gnu/libnvidia* && \
+		echo "\n4. Runtime logs:" && \
+		tail -n 50 /var/log/nvidia-container-runtime-debug.log'

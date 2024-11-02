@@ -1,20 +1,5 @@
 #!/bin/bash
 
-# Define NVIDIA version and paths at the top
-NVIDIA_VERSION="535.183.01"
-NVIDIA_MAJOR_VERSION="${NVIDIA_VERSION%%.*}"
-NVIDIA_LIB_DIR="/usr/lib/x86_64-linux-gnu"
-
-# Define all required NVIDIA libraries
-NVIDIA_LIBS=(
-    "libnvidia-ml.so.${NVIDIA_VERSION}"
-    "libcuda.so.${NVIDIA_VERSION}"
-    "libnvidia-ptxjitcompiler.so.${NVIDIA_VERSION}"
-    "libnvidia-fatbinaryloader.so.${NVIDIA_VERSION}"
-)
-
-echo "Setting up NVIDIA version ${NVIDIA_VERSION}..."
-
 echo "Copying NVIDIA utilities and libraries to Kind container..."
 
 # Install required packages
@@ -48,118 +33,77 @@ done
 docker exec kind-control-plane mkdir -p /usr/local/nvidia/lib64
 docker exec kind-control-plane mkdir -p /usr/lib/x86_64-linux-gnu
 docker exec kind-control-plane mkdir -p /usr/lib/nvidia
-docker exec kind-control-plane mkdir -p /usr/local/nvidia/toolkit
+docker exec kind-control-plane bash -c 'mkdir -p /usr/local/nvidia/toolkit'
 
-# Define required NVIDIA libraries and create a function to handle library copying
-copy_nvidia_library() {
-    local lib="$1"
-    local basename=$(basename "$lib")
-    echo "Processing $basename..."
+# Copy and link NVIDIA libraries
+for lib in $(find /usr/lib/x86_64-linux-gnu -name "libnvidia-*.so*" -o -name "libcuda*.so*"); do
+    basename=$(basename "$lib")
+    docker cp "$lib" kind-control-plane:/usr/lib/x86_64-linux-gnu/
+    docker exec kind-control-plane chmod 755 "/usr/lib/x86_64-linux-gnu/$basename"
     
-    # Resolve symlinks to get the actual file
-    local real_lib=$(readlink -f "$lib")
-    echo "Real library path: $real_lib"
-    
-    # Force unmount and remove existing files
-    docker exec kind-control-plane bash -c "
-        # Force unmount if mounted
-        umount '${NVIDIA_LIB_DIR}/$basename' 2>/dev/null || true
-        # Remove existing file and symlinks
-        rm -f '${NVIDIA_LIB_DIR}/$basename'*
-        # Ensure directory exists
-        mkdir -p '${NVIDIA_LIB_DIR}'
-    "
-    
-    # Copy the actual file, not the symlink
-    echo "Copying real library file..."
-    if ! docker cp "$real_lib" "kind-control-plane:${NVIDIA_LIB_DIR}/$basename"; then
-        echo "ERROR: Failed to copy $basename"
-        return 1
-    fi
-    
-    # Verify file size matches
-    local src_size=$(stat -c%s "$real_lib")
-    local dst_size=$(docker exec kind-control-plane stat -c%s "${NVIDIA_LIB_DIR}/$basename")
-    
-    if [ "$src_size" != "$dst_size" ]; then
-        echo "ERROR: File size mismatch for $basename"
-        echo "Source size: $src_size"
-        echo "Destination size: $dst_size"
-        return 1
-    fi
-    
-    # Set permissions
-    docker exec kind-control-plane chmod 755 "${NVIDIA_LIB_DIR}/$basename"
-    
-    # Create symlinks if it's a versioned library
-    if [[ $basename =~ (.+)\.so\.([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
-        local base="${BASH_REMATCH[1]}"
-        local version="${BASH_REMATCH[2]}"
-        local major_version="${version%%.*}"
-        
-        docker exec kind-control-plane bash -c "
-            cd ${NVIDIA_LIB_DIR} && \
-            ln -sf $basename $base.so.$major_version && \
-            ln -sf $base.so.$major_version $base.so.1 && \
-            ln -sf $base.so.1 $base.so && \
+    # Create version-independent symlinks
+    if [[ $basename =~ (.+)\.so\.[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+        base="${BASH_REMATCH[1]}"
+        version=$(echo "$basename" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+$')
+        docker exec kind-control-plane bash -c "cd /usr/lib/x86_64-linux-gnu && \
+            ln -sf $basename $base.so.${version%%.*} && \
+            ln -sf $base.so.${version%%.*} $base.so && \
             cd /usr/lib/nvidia && \
-            ln -sf ../x86_64-linux-gnu/$base.so $base.so
-        "
+            ln -sf ../x86_64-linux-gnu/$base.so $base.so"
     fi
-    
-    # Verify the copy and print details
-    docker exec kind-control-plane bash -c "
-        echo 'Verifying $basename:'
-        ls -la ${NVIDIA_LIB_DIR}/$basename
-        file ${NVIDIA_LIB_DIR}/$basename
-        echo 'File size: '
-        stat -c%s ${NVIDIA_LIB_DIR}/$basename
-    "
-    
-    return 0
-}
-
-echo "=== Copying NVIDIA Libraries ==="
-
-# First, copy the essential libraries we know we need
-for lib in "${NVIDIA_LIBS[@]}"; do
-    source_lib="${NVIDIA_LIB_DIR}/$lib"
-    if [ ! -f "$source_lib" ]; then
-        echo "WARNING: Essential library $lib not found!"
-        continue
-    fi
-    copy_nvidia_library "$source_lib"
 done
 
-# Then, find and copy any additional NVIDIA libraries
-echo "Copying additional NVIDIA libraries..."
-for lib in $(find ${NVIDIA_LIB_DIR} -name "libnvidia-*.so*" -o -name "libcuda*.so*" -type f); do
-    # Skip if we already copied this library
-    basename=$(basename "$lib")
-    if [[ " ${NVIDIA_LIBS[@]} " =~ " ${basename} " ]]; then
+# Define all required NVIDIA libraries
+NVIDIA_LIBS=(
+    "libnvidia-ml.so.535.183.01"
+    "libcuda.so.535.183.01"
+    "libnvidia-ptxjitcompiler.so.535.183.01"
+    "libnvidia-fatbinaryloader.so.535.183.01"
+)
+
+echo "=== Copying NVIDIA Libraries ==="
+for lib in "${NVIDIA_LIBS[@]}"; do
+    base_lib="/usr/lib/x86_64-linux-gnu/$lib"
+    if [ ! -f "$base_lib" ]; then
+        echo "WARNING: Cannot find $base_lib"
         continue
     fi
-    copy_nvidia_library "$lib"
+    
+    echo "Copying $lib..."
+    docker exec kind-control-plane rm -f "/usr/lib/x86_64-linux-gnu/$lib"
+    docker cp "$base_lib" "kind-control-plane:/usr/lib/x86_64-linux-gnu/"
+    
+    # Create version symlinks
+    version=$(echo "$lib" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+    major_version=${version%%.*}
+    base_name=$(echo "$lib" | sed "s/\.${version}//")
+    
+    docker exec kind-control-plane bash -c "
+        cd /usr/lib/x86_64-linux-gnu && \
+        ln -sf $lib ${base_name}.${major_version} && \
+        ln -sf ${base_name}.${major_version} ${base_name}.1 && \
+        ln -sf ${base_name}.1 ${base_name}
+    "
 done
 
 # Verify all libraries
 echo "=== Verifying Libraries ==="
-docker exec kind-control-plane bash -c "
-    echo '1. Checking library files:'
-    ls -la ${NVIDIA_LIB_DIR}/libnvidia* /usr/lib/x86_64-linux-gnu/libcuda*
+docker exec kind-control-plane bash -c '
+    echo "1. Checking library files:"
+    ls -la /usr/lib/x86_64-linux-gnu/libnvidia* /usr/lib/x86_64-linux-gnu/libcuda*
     
-    echo '\n2. Checking library dependencies:'
+    echo "\n2. Checking library dependencies:"
     for lib in libnvidia-ml.so.1 libcuda.so.1; do
-        echo '\nChecking $lib:'
-        ldd ${NVIDIA_LIB_DIR}/$lib
+        echo "\nChecking $lib:"
+        ldd /usr/lib/x86_64-linux-gnu/$lib
     done
     
-    echo '\n3. Updating ldconfig cache:'
+    echo "\n3. Updating ldconfig cache:"
     ldconfig
     
-    echo '\n4. Checking ldconfig cache:'
-    ldconfig -p | grep -E 'nvidia|cuda'
-"
+    echo "\n4. Checking ldconfig cache:"
+    ldconfig -p | grep -E "nvidia|cuda"
+'
 
 # Copy NVIDIA container runtime to toolkit directory
 if [ -f "/usr/bin/nvidia-container-runtime" ]; then
@@ -187,16 +131,43 @@ debug = "/var/log/nvidia-container-cli-debug.log"
 debug-file = "/var/log/nvidia-container-cli-debug.log"
 verbosity = "debug"
 root = "/usr/lib/x86_64-linux-gnu"
-path = ["/usr/lib/x86_64-linux-gnu", "/usr/local/nvidia/lib64", "/usr/bin", "/usr/lib/nvidia"]
+path = [
+    "/usr/lib/x86_64-linux-gnu",
+    "/usr/local/nvidia/lib64",
+    "/usr/bin",
+    "/usr/lib/nvidia"
+]
 environment = []
 library-root = "/usr/lib/x86_64-linux-gnu"
-library-path = ["/usr/lib/x86_64-linux-gnu", "/usr/lib/nvidia"]
+library-path = [
+    "/usr/lib/x86_64-linux-gnu",
+    "/usr/lib/nvidia"
+]
 
 [nvidia-container-runtime]
 debug = "/var/log/nvidia-container-runtime.log"
 debug-file = "/var/log/nvidia-container-runtime.log"
 verbosity = "debug"
 EOF'
+
+# Validate the config
+docker exec kind-control-plane bash -c '
+    echo "Validating NVIDIA container runtime config..."
+    if command -v tomlv &> /dev/null; then
+        tomlv /etc/nvidia-container-runtime/config.toml
+    else
+        echo "Installing toml validator..."
+        apt-get update && apt-get install -y go-toml
+        tomlv /etc/nvidia-container-runtime/config.toml
+    fi
+    
+    echo "Testing NVIDIA container runtime..."
+    nvidia-container-cli info
+'
+
+# Restart containerd after config changes
+docker exec kind-control-plane systemctl restart containerd
+sleep 5
 
 # Set up environment
 docker exec kind-control-plane bash -c 'echo "export PATH=\$PATH:/usr/local/nvidia/bin" >> /etc/profile.d/nvidia.sh'
@@ -214,14 +185,14 @@ docker exec kind-control-plane nvidia-smi
 
 # Add this before "NVIDIA setup complete"
 echo "=== Debugging NVIDIA Setup ==="
-docker exec kind-control-plane bash -c "
-    echo '1. Library files:'
-    ls -la ${NVIDIA_LIB_DIR}/libnvidia-ml*
-    echo '\n2. Library load test:'
-    ldd ${NVIDIA_LIB_DIR}/libnvidia-ml.so.${NVIDIA_VERSION}
-    echo '\n3. NVIDIA SMI test:'
-    LD_LIBRARY_PATH=${NVIDIA_LIB_DIR}:/usr/lib/nvidia nvidia-smi
-"
+docker exec kind-control-plane bash -c '
+    echo "\n3. Library dependencies:"
+    ldd /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.$NVIDIA_ML_VERSION || true
+    echo "\n4. Library in ldconfig:"
+    ldconfig -v | grep nvidia-ml
+    echo "\n5. Testing library load:"
+    LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/lib/nvidia nvidia-smi
+'
 
 echo "=== Verifying Containerd Configuration ==="
 docker exec kind-control-plane bash -c '
