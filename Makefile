@@ -46,7 +46,7 @@ cluster:
 	kubectl cluster-info
 
 .PHONY: setup-nvidia-runtime
-setup-nvidia-runtime:
+setup-nvidia-runtime: verify-nvidia-library
 	@echo "Setting up NVIDIA runtime in Kind node..."
 	docker exec kind-control-plane apt-get update
 	# Add NVIDIA repository and its GPG key
@@ -62,23 +62,23 @@ setup-nvidia-runtime:
 	# Configure containerd
 	docker cp containerd-config.toml kind-control-plane:/etc/containerd/config.toml
 	docker exec kind-control-plane systemctl restart containerd
-	# Verify runtime setup
-	docker exec kind-control-plane nvidia-container-cli info
 	# Wait for containerd to be ready
 	sleep 20
+	# Now verify the setup
+	$(MAKE) verify-nvidia-setup
 
-.PHONY: validate-nvidia-setup
-validate-nvidia-setup:
-	@echo "Validating NVIDIA setup in Kind container..."
-	@echo "\nChecking NVIDIA devices:"
-	@docker exec kind-control-plane ls -l /dev/nvidia*
-	@echo "\nChecking NVIDIA driver utilities:"
-	@docker exec kind-control-plane which nvidia-smi
-	@docker exec kind-control-plane nvidia-smi
-	@echo "\nChecking NVIDIA libraries:"
-	@docker exec kind-control-plane ls -l /usr/lib/x86_64-linux-gnu/libnvidia*
-	@echo "\nChecking container runtime:"
-	@docker exec kind-control-plane nvidia-container-cli info
+.PHONY: verify-nvidia-setup
+verify-nvidia-setup:
+	@echo "=== Verifying NVIDIA Setup ==="
+	@docker exec kind-control-plane bash -c '\
+		echo "1. Library files:" && \
+		ls -la /usr/lib/x86_64-linux-gnu/libnvidia-ml* && \
+		echo "\n2. Library load test:" && \
+		ldd /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01 && \
+		echo "\n3. NVIDIA SMI test:" && \
+		nvidia-smi && \
+		echo "\n4. Container CLI test:" && \
+		nvidia-container-cli info'
 
 .PHONY: install-operators
 install-operators:
@@ -202,3 +202,12 @@ validate-runtime-setup:
 	@docker exec kind-control-plane ls -l /run/containerd/containerd.sock
 	@docker exec kind-control-plane systemctl status containerd
 	@docker exec kind-control-plane nvidia-container-cli info
+
+.PHONY: verify-nvidia-library
+verify-nvidia-library:
+	@echo "=== Verifying Host Library ==="
+	@if [ ! -f "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01" ]; then \
+		echo "ERROR: Source library not found!"; \
+		exit 1; \
+	fi
+	@ls -la /usr/lib/x86_64-linux-gnu/libnvidia-ml*
