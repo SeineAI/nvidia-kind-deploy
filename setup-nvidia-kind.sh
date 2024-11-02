@@ -43,24 +43,36 @@ for lib in $(find /usr/lib/x86_64-linux-gnu -name "libnvidia-*.so*" -o -name "li
 done
 
 # Specifically handle libnvidia-ml.so
-docker exec kind-control-plane bash -c 'cd /usr/lib/x86_64-linux-gnu && \
+docker exec kind-control-plane bash -c '
+    cd /usr/lib/x86_64-linux-gnu && \
+    rm -f libnvidia-ml.so* && \
+    cp -P /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.535.183.01 . && \
     ln -sf libnvidia-ml.so.535.183.01 libnvidia-ml.so.535 && \
     ln -sf libnvidia-ml.so.535 libnvidia-ml.so.1 && \
     ln -sf libnvidia-ml.so.1 libnvidia-ml.so && \
     cd /usr/lib/nvidia && \
-    ln -sf ../x86_64-linux-gnu/libnvidia-ml.so libnvidia-ml.so'
+    ln -sf ../x86_64-linux-gnu/libnvidia-ml.so.535.183.01 libnvidia-ml.so.535.183.01 && \
+    ln -sf libnvidia-ml.so.535.183.01 libnvidia-ml.so.535 && \
+    ln -sf libnvidia-ml.so.535 libnvidia-ml.so.1 && \
+    ln -sf libnvidia-ml.so.1 libnvidia-ml.so && \
+    ldconfig
+'
 
-# Add verification
+# Update permissions
+docker exec kind-control-plane bash -c '
+    chmod 755 /usr/lib/x86_64-linux-gnu/libnvidia-ml.so* && \
+    chmod 755 /usr/lib/nvidia
+'
+
+# Verify the setup
 docker exec kind-control-plane bash -c '
     echo "=== Library Verification ==="
-    echo "1. Main library location:"
-    ls -l /usr/lib/x86_64-linux-gnu/libnvidia-ml*
-    echo "2. Nvidia lib directory:"
-    ls -l /usr/lib/nvidia/libnvidia-ml*
-    echo "3. Library cache:"
+    echo "1. x86_64-linux-gnu symlinks:"
+    ls -la /usr/lib/x86_64-linux-gnu/libnvidia-ml*
+    echo "2. nvidia dir symlinks:"
+    ls -la /usr/lib/nvidia/libnvidia-ml*
+    echo "3. ldconfig cache:"
     ldconfig -p | grep nvidia-ml
-    echo "4. Library search paths:"
-    ldconfig -v 2>/dev/null | grep -B1 "libnvidia-ml"
 '
 
 # Copy NVIDIA container runtime to toolkit directory
