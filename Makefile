@@ -1,9 +1,10 @@
 SHELL := /bin/bash
 KIND_VERSION := 0.20.0
 KUBECTL_VERSION := $(shell curl -L -s https://dl.k8s.io/release/stable.txt)
+KUBE_PROMETHEUS_VERSION := release-0.13
 
 .PHONY: all
-all: prerequisites cluster setup-nvidia install-gpu-operator test-gpu
+all: prerequisites cluster setup-nvidia install-gpu-operator test-gpu setup-monitoring port-forward
 
 .PHONY: reinstall-all
 reinstall-all: clean cluster setup-nvidia install-gpu-operator setup-monitoring port-forward
