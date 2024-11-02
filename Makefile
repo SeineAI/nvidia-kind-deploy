@@ -6,8 +6,22 @@ KUBE_PROMETHEUS_VERSION := release-0.13
 .PHONY: all
 all: prerequisites cluster setup-nvidia-runtime install-operators setup-monitoring port-forward
 
-.PHONY: reinstall
-reinstall: clean cluster setup-nvidia-runtime install-operators setup-monitoring port-forward
+.PHONY: reinstall-all
+reinstall-all: clean cluster setup-nvidia-runtime install-operators setup-monitoring port-forward
+
+.PHONY: reinstall-nvidia-runtime
+reinstall-nvidia-runtime:
+	@echo "Reinstalling NVIDIA runtime..."
+	-helm uninstall -n gpu-operator gpu-operator
+	-kubectl delete namespace gpu-operator
+	@echo "Waiting for namespace deletion..."
+	-kubectl wait --for=delete namespace/gpu-operator --timeout=60s
+	@echo "Recreating cluster and setting up NVIDIA runtime..."
+	$(MAKE) clean
+	$(MAKE) cluster
+	$(MAKE) setup-nvidia-runtime
+	$(MAKE) install-operators
+	@echo "NVIDIA runtime reinstallation complete"
 
 .PHONY: prerequisites
 prerequisites:
