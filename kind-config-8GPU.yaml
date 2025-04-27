@@ -1,0 +1,73 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraMounts:
+  # Data directories
+  - hostPath: /mnt/models
+    containerPath: /models
+  - hostPath: /mnt/data
+    containerPath: /data
+  - hostPath: /mnt/templates
+    containerPath: /templates
+  - hostPath: /mnt/requests
+    containerPath: /requests
+  # GPU devices - all 8 GPUs
+  - hostPath: /dev/nvidia0
+    containerPath: /dev/nvidia0
+  - hostPath: /dev/nvidia1
+    containerPath: /dev/nvidia1
+  - hostPath: /dev/nvidia2
+    containerPath: /dev/nvidia2
+  - hostPath: /dev/nvidia3
+    containerPath: /dev/nvidia3
+  - hostPath: /dev/nvidia4
+    containerPath: /dev/nvidia4
+  - hostPath: /dev/nvidia5
+    containerPath: /dev/nvidia5
+  - hostPath: /dev/nvidia6
+    containerPath: /dev/nvidia6
+  - hostPath: /dev/nvidia7
+    containerPath: /dev/nvidia7
+  - hostPath: /dev/nvidia-uvm
+    containerPath: /dev/nvidia-uvm
+  - hostPath: /dev/nvidia-uvm-tools
+    containerPath: /dev/nvidia-uvm-tools
+  - hostPath: /dev/nvidiactl
+    containerPath: /dev/nvidiactl
+  - hostPath: /dev/nvidia-modeset
+    containerPath: /dev/nvidia-modeset
+  - hostPath: /dev/nvidia-caps
+    containerPath: /dev/nvidia-caps
+  # NVIDIA Binaries
+  - hostPath: /usr/bin/nvidia-smi
+    containerPath: /usr/bin/nvidia-smi
+  - hostPath: /usr/bin/nvidia-debugdump
+    containerPath: /usr/bin/nvidia-debugdump
+  - hostPath: /usr/bin/nvidia-persistenced
+    containerPath: /usr/bin/nvidia-persistenced
+  # Essential NVIDIA libraries with correct version
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.570.124.06
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.570.124.06
+  - hostPath: /usr/lib/x86_64-linux-gnu/libcuda.so.570.124.06
+    containerPath: /usr/lib/x86_64-linux-gnu/libcuda.so.570.124.06
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.570.124.06
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ptxjitcompiler.so.570.124.06
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-fatbinaryloader.so.570.124.06
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-fatbinaryloader.so.570.124.06
+  extraPortMappings:
+  - containerPort: 30000
+    hostPort: 30000
+    protocol: TCP
+  - containerPort: 30001
+    hostPort: 30001
+    protocol: TCP
+  - containerPort: 30002
+    hostPort: 30002
+    protocol: TCP
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "nvidia.com/gpu=true"
