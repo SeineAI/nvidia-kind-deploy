@@ -2,6 +2,7 @@ SHELL := /bin/bash
 KIND_VERSION := 0.20.0
 KUBECTL_VERSION := $(shell curl -L -s https://dl.k8s.io/release/stable.txt)
 KUBE_PROMETHEUS_VERSION := release-0.13
+KIND_CONFIG ?= kind-config.yaml
 
 .PHONY: all
 all: prerequisites cluster setup-nvidia install-gpu-operator test-gpu setup-monitoring port-forward
@@ -42,8 +43,8 @@ prerequisites:
 
 .PHONY: cluster
 cluster:
-	@echo "Creating Kind cluster with GPU support..."
-	kind create cluster --config kind-config.yaml
+	@echo "Creating Kind cluster with GPU support using config: $(KIND_CONFIG)..."
+	kind create cluster --config $(KIND_CONFIG)
 	kubectl cluster-info
 
 .PHONY: setup-nvidia

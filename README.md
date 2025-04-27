@@ -43,6 +43,23 @@ make cluster
 ```
 Creates a Kind cluster using the configuration from `kind-config.yaml`. For detailed configuration information, see the [NVIDIA and Kind Configuration Guide](docs/nvidia-kind.md).
 
+You can use different kind configuration files by setting the `KIND_CONFIG` environment variable:
+```bash
+# Use default config (kind-config.yaml)
+make cluster
+
+# Use 8 GPU configuration
+KIND_CONFIG=kind-config-8GPU.yaml make cluster
+
+# Use mount configuration
+KIND_CONFIG=kind-config-mnt.yaml make cluster
+```
+
+Available configuration files:
+- `kind-config.yaml`: Default configuration with basic GPU support
+- `kind-config-8GPU.yaml`: Configuration for systems with 8 GPUs
+- `kind-config-mnt.yaml`: Configuration with additional mount points for models, data, templates, and requests
+
 #### 3. Setup NVIDIA Support
 ```bash
 make setup-nvidia
